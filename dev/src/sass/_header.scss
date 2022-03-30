@@ -1,0 +1,140 @@
+.header-grid {
+  position: relative;
+  padding: 1px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "L I D";
+
+  .link-area {
+    grid-area: L;
+  }
+  .link-area img {
+    max-height: 45px;
+    width: auto;
+    max-width: 100%;
+  }
+  .date-area {
+    grid-area: D;
+  }
+  .link-area, .date-area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: $px-10*2;
+    padding-bottom: $px-10*2;
+  }
+  .logo-area {
+    grid-area: I;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: $px-10*2;
+    padding-bottom: $px-10*2;
+    img{
+      display: none;
+    }
+  }
+  .link-area, .logo-area, .date-area{
+    z-index: 101;
+    position: relative;
+  }
+  .menu-area {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 100;
+    width: 100%;
+    opacity: 0;
+    bottom: 100%;
+    transform: translateY(100%);
+    transition: all $fast;
+    border:1px solid $border-color;
+    border-bottom: none;
+    padding: $vw-25 * 2;
+  }
+  .menu-area.active{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .link-area, .logo-area{
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+@media (min-width: $sm) {
+  .header-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+    "L I I D";
+    .logo-area{
+      padding-left: $px-10*4.5;
+      padding-right: $px-10*4.5;
+      img{
+        display: block;
+      }
+    }
+    .link-area img {
+      max-height: 90px;
+    }
+    .menu-area{
+      bottom: unset;
+      top: 100%;
+      transform: translateY(-100%);
+      border-top: none;
+      border-bottom: 1px solid $border-color;
+    }
+  }
+}
+
+@media (min-width: $lg) {
+  .header-grid {
+    position: static;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas:
+    "L I I I I D"
+    "M M M M M M";
+    .menu-area{
+      grid-area: M;
+      display: flex;
+      flex-direction: row;
+      position: static;
+      transform: unset;
+      border: none;
+      padding: 0;
+      opacity: 1;
+    }
+
+    .link-area, .date-area {
+      padding: $vw-10*3 $vw-10*6;
+    }
+  }
+}
+.fixed-menu{
+  position: fixed;
+  top:$px-10*3;
+  left:50%;
+  transform: translateX(-50%);
+  width: 100%;
+
+  .header-grid{
+    gap:0;
+  }
+}
+@media (min-width: $xxxl) {
+  .header-grid {
+    .link-area, .date-area {
+      padding: $vw-10*3.5 $vw-10*8;
+    }
+  }
+}
+
+@media (min-width: $wide) {
+  .header-grid {
+    .link-area, .date-area {
+      padding: $px-10*4 $px-10*9;
+    }
+  }
+}

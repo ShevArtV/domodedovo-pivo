@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'Anonymous Pro Regular';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('../fonts/AnonymousProRegular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cuprum Bold';
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  src: url('../fonts/CuprumBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cuprum Regular';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('../fonts/CuprumRegular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Hagin Caps Medium';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('../fonts/HaginCapsMedium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Hagrid Heavy';
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  src: url('../fonts/HagridHeavy.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Herold Bold';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('../fonts/HeroldBold.woff2') format('woff2');
+}
+
+@each $name, $value in $fontweights{
+  .font-#{$name}{
+    font-family: $value;
+  }
+}
+
+

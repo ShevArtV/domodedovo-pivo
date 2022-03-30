@@ -1,0 +1,236 @@
+// default sizes
+// 10/18=0.5556
+$px-5: 0.2778em;
+$px-10: 0.5556em;
+$px-15: 0.8333em;
+$px-25: 1.3889em;
+// 10*100/1920=0.5208
+$vw-5: 0.2604vw;
+$vw-10: 0.5208vw;
+$vw-15: 0.7813vw;
+$vw-25: 1.3021vw;
+
+// fontweights
+$fontweights: (
+  'anonymousproregular': 'Anonymous Pro Regular',
+  'cuprumbold' : 'Cuprum Bold',
+  'cuprumregular' : 'Cuprum Regular',
+  'hagincapsmedium' : 'Hagin Caps Medium',
+  'hagridheavy' : 'Hagrid Heavy',
+  'heroldbold' : 'Herold Bold',
+);
+
+// fontsizes
+$fs-14: $px-10*1.4;
+$fs-16: $px-10*1.6;
+$fs-18: $px-10*1.8;
+$fs-20: $px-10*2;
+$fs-22: $px-10*2.2;
+$fs-24: $px-10*2.4;
+$fs-30: $px-10*3;
+$fs-32: $px-10*3.2;
+$fs-36: $px-10*3.6;
+$fs-48: $px-10*4.8;
+$fs-54: $px-10*5.4;
+$fs-62: $px-10*6.2;
+$fs-70: $px-10*7;
+$fs-100: $px-10*10;
+$fontsizes: (
+  '14' : $fs-14,
+  '16' : $fs-16,
+  '18' : $fs-18,
+  '20' : $fs-20,
+  '22' : $fs-22,
+  '24' : $fs-24,
+  '30' : $fs-30,
+  '32' : $fs-32,
+  '36' : $fs-36,
+  '48' : $fs-48,
+  '54' : $fs-54,
+  '62' : $fs-62,
+  '70' : $fs-70,
+  '100' : $fs-100,
+);
+
+// lineheights
+$lineheights: (
+  '100' : 100%,
+  '150' : 150%,
+);
+
+// gaps
+$gaps: (
+  '15': $px-15,
+  '25': $px-25,
+  '35': $px-10 * 3.5,
+  '45': $px-10 * 4.5,
+  '55': $px-10 * 5.5,
+  '65': $px-10 * 6.5,
+  '75': $px-10 * 7.5,
+  '85': $px-10 * 8.5,
+  '95': $px-10 * 9.5
+);
+
+// colors
+$dark: #2B2A29;
+$body-color: #2B2A29;
+$body-bg: #F5F3F0;
+$border-color: #5B5B5B;
+$dark2: #302C2C;
+$sand: #DDB97A;
+$white: #fff;
+$gray-light: #DADADA;
+$gray-light2: #EBECEC;
+$red: #D42E11;
+$black: #000;
+$colors: (
+  'white': $white,
+  'sand':$sand,
+  'dark': $body-color,
+  'gray-light':$gray-light,
+  'gray-dark':$border-color,
+  'gray-light2':$gray-light2,
+  'dark2':$dark2,
+  'red':$red,
+  'bg': $body-bg,
+  'black':$black
+);
+$lights: (
+  'white': $white,
+  'sand':$sand,
+  'gray-light':$gray-light,
+  'gray-light2':$gray-light2,
+  'bg': $body-bg,
+);
+$darks: (
+  'dark': $body-color,
+  'gray-dark':$border-color,
+  'dark2':$dark2,
+  'red':$red,
+  'black':$black
+);
+
+// transitions speed
+$fast: .3s;
+$slow: .6s;
+$slowest: .9s;
+
+//breakpoints
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+$xxxl: 1700px;
+$wide: 1902px;
+$breakpoints: (
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl,
+  xxl: $xxl,
+  xxxl: $xxl,
+  wide: $wide,
+);
+
+//sides
+$sides: (
+  'all',
+  'left',
+  'right',
+  'top',
+  'bottom',
+);
+
+// Bootstrap Variables
+//
+// Variables should follow the `$component-state-property-size` formula for
+// consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
+
+
+// Characters which are escaped by the escape-svg function
+$escaped-characters: (
+    ("<", "%3c"),
+    (">", "%3e"),
+    ("#", "%23"),
+    ("(", "%28"),
+    (")", "%29"),
+) !default;
+
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+
+// scss-docs-start spacer-variables-maps
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+) !default;
+
+// scss-docs-end spacer-variables-maps
+
+// Position
+//
+// Define the edge positioning anchors of the position utilities.
+
+// scss-docs-start position-map
+$position-values: (
+  0: 0,
+  50: 50%,
+  100: 100%
+) !default;
+// scss-docs-end position-map
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+// scss-docs-start grid-breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl,
+  xxl: $xxl,
+  xxxl: $xxl
+) !default;
+// scss-docs-end grid-breakpoints
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+// scss-docs-start container-max-widths
+$container-max-widths: (
+  sm: 88.75vw,
+  md: 88.75vw,
+  lg: 88.75vw,
+  xl: 88.75vw,
+  xxl: 88.75vw,
+  xxxl: 88.75vw,
+) !default;
+// scss-docs-end container-max-widths
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 1.5rem !default;
+$grid-row-columns: 6 !default;
+
+$gutters: $spacers !default;
+
+// Container padding
+
+$container-padding-x: $grid-gutter-width * .5 !default;

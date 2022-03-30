@@ -1,0 +1,20 @@
+.btn{
+  border:none;
+  outline: none;
+  padding: $px-10 $px-25;
+  color:$white;
+  cursor: pointer;
+  transition: all $fast;
+  display: inline-block;
+}
+
+@each $name, $value in $colors{
+  .btn-#{$name}{
+    background-color: $value;
+  }
+}
+.btn-dark{
+  &:hover{
+    background-color: $black;
+  }
+}

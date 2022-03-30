@@ -1,0 +1,85 @@
+.nav-item {
+  width: auto;
+  padding: $vw-25 $vw-10*4.5;
+  padding-left: $vw-10*10;
+  position: relative;
+  flex-grow: 1;
+  &:before {
+    content: "\e907";
+    font-family: 'icomoon';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(50%, -75%);
+    font-size: $px-10*0.8;
+  }
+
+  .nav-link {
+    text-transform: uppercase;
+    font-family: 'Hagin Caps Medium';
+    text-decoration: none;
+    color: $dark2;
+    line-height: 1;
+    font-size: $fs-24;
+  }
+
+  &:hover .nav-link, .nav-link.active {
+    text-decoration: underline;
+  }
+}
+@media (min-width: $sm){
+  .nav-item {
+    padding-left: $vw-10*4.5;
+  }
+}
+@media (min-width: $lg){
+  .nav-item{
+    padding: $vw-25 $vw-10*4;
+    text-align: center;
+    &:first-child {
+      padding-left: $vw-25;
+    }
+    &:last-child {
+      padding-right: $vw-25;
+    }
+    &:last-child:before {
+      display: none;
+    }
+    &:before{
+      right: 0;
+      left: unset;
+      transform: translate(50%, -50%);
+    }
+    .nav-link{
+      font-size: $fs-16;
+    }
+  }
+}
+@media (min-width: $xl){
+  .nav-item{
+    .nav-link{
+      font-size: $fs-20;
+    }
+  }
+}
+@media (min-width: $xxl){
+  .nav-item{
+    .nav-link{
+      font-size: $fs-22;
+    }
+  }
+}
+@media (min-width: $wide){
+  .nav-item{
+    padding: $px-10*2.35 $px-10*4;
+    &:first-child {
+      padding-left: $px-10*2.5;
+    }
+    &:last-child {
+      padding-right: $px-10*2.5;
+    }
+    .nav-link{
+      font-size: $fs-24;
+    }
+  }
+}

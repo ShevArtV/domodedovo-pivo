@@ -1,0 +1,267 @@
+// tags
+body {
+  font-family: 'Cuprum Regular';
+  font-size: 14px;
+  color: $body-color;
+  background-color: $body-bg;
+  font-weight: 400;
+}
+
+a, .btn, i, img {
+  transition: all $fast;
+
+  i {
+    transition: all 0s;
+  }
+}
+
+// grid
+.container{
+  width: 95%;
+  position: relative;
+}
+.d-grid{
+  display: grid;
+  gap: 1px;
+  background-color: $border-color;
+  & > *:not(.d-grid){
+    background-color: $body-bg;
+  }
+  .d-grid{
+    background-color: $body-bg;
+    & > *{
+      border-right: 1px solid $border-color;
+     border-bottom: 1px solid $border-color;
+    }
+  }
+}
+.flex-grow{
+  flex-grow: 1;
+}
+
+.flex-img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+// positions
+.fixed-bottom, .fixed-top{
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+.fixed-bottom{
+  bottom:0;
+  padding-bottom: $px-15;
+}
+.fixed-top{
+  top:0;
+  padding-top: $px-10*3;
+}
+
+// view
+.overflow-hidden{
+  overflow: hidden;
+}
+.inner-title{
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+  border-left: 1px solid $border-color;
+  border-right: 1px solid $border-color;
+}
+// text align
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+
+// decoration
+.text-decoration-none{
+  text-decoration: none;
+}
+.text-decoration-underline{
+  text-decoration: underline;
+}
+.text-uppercase{
+  text-transform: uppercase;
+}
+.text-lowercase{
+  text-transform: lowercase;
+}
+
+.title-decor{
+  position: relative;
+  *{
+    max-width: max-content;
+    position: relative;
+    z-index: 2;
+    background-color: $body-bg;
+    display: inline-block;
+    padding-right: 10px;
+    transition: all $fast;
+  }
+
+  &:before, &:after{
+    content:'';
+    display: block;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    background-color: $dark;
+    z-index: 1;
+  }
+  &:before{
+    height: 2px;
+    top:calc(50% - 6px);
+  }
+  &:after{
+    height: 1px;
+    bottom:calc(50% - 5.5px);
+  }
+}
+.title-decor.text-center{
+  *{
+    padding-left: 10px;
+  }
+}
+.title-decor.text-right{
+  *{
+    padding-left: 10px;
+    padding-right: 0;
+  }
+}
+.interactive-block:hover{
+  .title-decor{
+    *{
+      background-color: $white;
+    }
+  }
+}
+.title-decor__reverse{
+  &:before{
+    height: 1px;
+  }
+  &:after{
+    height: 2px;
+  }
+}
+.title-decor__under{
+  *{
+    background-color: transparent;
+  }
+  &:before{
+    height: 2px;
+    top:unset;
+    bottom: -10px;
+  }
+  &:after{
+    height: 1px;
+    bottom:0;
+  }
+}
+.title-decor__top-bottom{
+  *{
+    background-color: transparent;
+  }
+  &:before{
+    height: 1px;
+    top:20px;
+  }
+  &:after{
+    height: 1px;
+    bottom:20px;
+  }
+}
+
+.interactive-block, .hover-color-sand, .gray-img{
+  transition: all $fast;
+}
+.gray-img{
+  filter:grayscale(100%);
+}
+.interactive-block:hover{
+  background-color: $white !important;
+  color:$black !important;
+  .gray-img{
+    filter: grayscale(0);
+  }
+  .hover-color-sand{
+    color: $sand;
+  }
+}
+
+// media queries
+@media (min-width: $sm) {
+  //view
+  .inner-title{
+    border-top:none;
+    border-bottom: none;
+    border-left: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+  }
+
+  // grid
+  .container{
+    width: auto;
+  }
+
+  // text align
+  .text-sm-right{
+    text-align: right;
+  }
+}
+@media (min-width: $md) {
+  // text align
+  .text-md-right{
+    text-align: right;
+  }
+}
+@media (min-width: $lg) {
+  // positions
+  .fixed-top{
+    position: relative;
+  }
+
+  // grid
+  .jsSiteWrap{
+    padding-top: 0!important;
+  }
+}
+@media (min-width: $xl){
+  //view
+  .inner-title{
+    border-bottom: 1px solid $border-color;
+    border-left: 1px solid $border-color;
+    border-right: 1px solid $border-color;
+  }
+
+  // tags
+  body{
+    font-size: 13px;
+  }
+}
+@media (min-width: $xxl){
+  // tags
+  body{
+    font-size: 14px;
+  }
+}
+@media (min-width: $xxxl){
+  // tags
+  body{
+    font-size: 16px;
+  }
+}
+@media (min-width: $wide){
+  // tags
+  body{
+    font-size: 18px;
+  }
+
+  // grid
+  .container{
+    max-width: 1704px;
+  }
+}

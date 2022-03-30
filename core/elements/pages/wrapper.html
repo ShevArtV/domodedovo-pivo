@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+	<!-- общие поля сайта -->
+    {set $site_url = $_modx->config.site_url}
+
+    <!-- основные поля ресурса -->
+    {set $id = $_modx->resource.id}
+    {set $pagetitle = $_modx->resource.pagetitle}
+    {set $longtitle = $_modx->resource.longtitle}
+    {set $longtitle = $_modx->resource.longtitle}
+    {set $menutitle = $_modx->resource.menutitle}
+    {set $description = $_modx->resource.description}
+    {set $introtext = $_modx->resource.introtext}
+    {set $content = $_modx->resource.content}
+
+    <!--поля конфигурации пользователя -->
+    {set $email = $_modx->config.email}
+	{set $phone = $_modx->config.phone}
+    {set $phoneFormatted = $_modx->config.phone|strip:true|ereplace:'/(\d)(\d{3})(\d{3})(\d{2})(\d{2})$/':'8 (\2) \3-\4-\5'}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="{$description}">
+    <base href="{$site_url}">
+    <title>{$pagetitle}</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="assets/libs/node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/libs/node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <link rel="stylesheet" href="assets/libs/node_modules/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="assets/project_files/css/style.css">
+
+</head>
+<body>
+<header></header>
+<main>
+    {block 'content'}
+    {/block}
+</main>
+<footer></footer>
+</body>
+</html>

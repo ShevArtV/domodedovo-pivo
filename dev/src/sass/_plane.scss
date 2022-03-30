@@ -1,0 +1,104 @@
+// common
+.clouds {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.cloud {
+  position: absolute;
+  right: 100%;
+
+  &-1 {
+    width: 21.05%;
+    height: auto;
+    top: 4.6%;
+    animation: cloud-move 10.3s 2s linear normal infinite;
+  }
+
+  &-2 {
+    top: 8.6%;
+    width: 12.7%;
+    height: auto;
+    animation: cloud-move 9.5s 1.5s linear normal infinite;
+  }
+
+  &-3 {
+    top: 6.7%;
+    width: 31.85%;
+    height: auto;
+    z-index: 30;
+    animation: cloud-move 12s 0s linear normal infinite;
+  }
+
+  &-4 {
+    top: 23.75%;
+    width: 19.4%;
+    height: auto;
+    animation: cloud-move 11s 3s linear normal infinite;
+  }
+
+  &-5 {
+    bottom: 0;
+    width: 26.3%;
+    height: auto;
+    z-index: 30;
+    animation: cloud-move 16s 4s linear normal infinite;
+  }
+
+  &-6 {
+    bottom: 3.65%;
+    width: 10.25%;
+    height: auto;
+    z-index: 30;
+    animation: cloud-move 10s 1.5s linear normal infinite;
+  }
+
+  &-7 {
+    bottom: 8.2%;
+    width: 26.35%;
+    height: auto;
+    animation: cloud-move 9s 2.5s linear normal infinite;
+  }
+}
+.plane {
+  position: relative;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -35%);
+  width: 70.9%;
+  height: auto;
+  z-index: 20;
+  animation: plane-anim 4s ease-in-out alternate infinite;
+  max-width: 992px;
+}
+
+// animations
+@keyframes plane-anim {
+  from {
+    transform: translateY(-32%) translateX(-50%);
+  }
+  to {
+    transform: translateY(-40%) translateX(-50%);
+  }
+}
+@keyframes cloud-move {
+  from {
+    right: 100%;
+  }
+  to {
+    right: -50%
+  }
+}
+
+// media queries
+@media (min-width: $md){
+  .plane{
+    top:50%;
+  }
+}
+
+
+

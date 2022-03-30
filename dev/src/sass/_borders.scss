@@ -1,0 +1,52 @@
+@each $side in $sides{
+  @if $side != 'all' {
+    .border-#{$side}-none {
+      border-#{$side}: none !important;
+    }
+  }@else{
+    .border-#{$side}-none {
+      border: none !important;
+    }
+  }
+}
+@each $side in $sides{
+  @if $side != 'all'{
+    .border-#{$side}{
+      border-#{$side}:1px solid  $border-color;
+    }
+  }@else{
+    .border-#{$side}{
+      border:1px solid  $border-color;
+    }
+  }
+
+}
+
+
+@each $name, $value in $breakpoints{
+  @media(min-width: $value){
+    @each $side in $sides{
+      @if $side != 'all' {
+        .border-#{$name}-#{$side}-none {
+          border-#{$side}: none !important;
+        }
+      }@else{
+        .border-#{$name}-#{$side}-none {
+          border: none !important;
+        }
+      }
+    }
+    @each $side in $sides{
+      @if $side != 'all'{
+        .border-#{$name}-#{$side}{
+          border-#{$side}:1px solid  $border-color;
+        }
+      }@else{
+        .border-#{$name}-#{$side}{
+          border:1px solid  $border-color;
+        }
+      }
+
+    }
+  }
+}

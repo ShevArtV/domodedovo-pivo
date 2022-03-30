@@ -1,0 +1,35 @@
+// fontsize classes
+@each $name, $value in $fontsizes{
+  .fs-#{$name}{
+    font-size: $value;
+  }
+}
+
+// lineheight classes
+@each $name, $value in $lineheights{
+  .lh-#{$name}{
+    line-height: $value;
+  }
+}
+
+// media queries
+@media (max-width: 768px){
+  .fs-100{
+    font-size: $px-10*6;
+  }
+  .fs-70{
+    font-size: $px-10*4;
+  }
+  .fs-62{
+    font-size: $px-10*3.8;
+  }
+  .fs-54{
+    font-size: $px-10*3.5;
+  }
+  .fs-48{
+    font-size: $px-10*3;
+  }
+  .fs-36{
+    font-size: $px-10*2.5;
+  }
+}
