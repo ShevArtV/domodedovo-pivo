@@ -1,11 +1,41 @@
-.transition-fast{
+.interactive-block:hover{
+  .title-decor{
+    *{
+      background-color: $white;
+    }
+    &:before, &:after{
+      background-color: $dark;
+    }
+  }
+}
+.interactive-block, .hover-color-sand, .gray-img{
   transition: all $fast;
 }
-.shadow{
-  transition: all $fast;
+.gray-img{
+  filter:grayscale(100%);
+}
+.interactive-block:hover{
+  background-color: $white !important;
+  color:$black !important;
+  .gray-img{
+    filter: grayscale(0);
+  }
+  .hover-color-sand{
+    color: $sand;
+  }
 }
 
-.scale-onhover:hover {
-  transform: scale(1.03);
+@each $name, $value in $darks{
+  .bg-#{$name}.interactive-block:hover{
+    background-color: $black;
+    color:$white;
+  }
+}
+
+@each $name, $value in $lights{
+  .bg-#{$name}.interactive-block:hover{
+    background-color: $white;
+    color:$black;
+  }
 }
 

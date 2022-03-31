@@ -148,3 +148,12 @@ export function initSliders(sliders, params) {
         });
     }
 }
+
+// инициализируем галереи
+export function initGalleries(galleries, params) {
+    if(typeof lightGallery !== 'undefined'){
+        galleries.forEach(function (elem, i) {
+            lightGallery(elem, params[i]);
+        });
+    }
+}

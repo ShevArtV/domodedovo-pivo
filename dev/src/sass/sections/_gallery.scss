@@ -1,0 +1,48 @@
+.gallery-grid {
+  padding: 1px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(auto-fill, 1fr);
+  grid-template-areas:
+    "H H"
+    "I1 I2"
+    "I6 I6"
+    "T T"
+    "I3 I4"
+    "I7 I7"
+    "I5 I5"
+    "I5 I5";
+
+  @for $i from 1 through 7 {
+    .image-area-#{$i} {
+      grid-area: I#{$i};
+    }
+  }
+}
+
+@media (min-width: $sm) {
+
+}
+
+@media (min-width: $md) {
+  .gallery-grid {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows:  repeat(5, auto);
+    grid-template-areas:
+    "I6 I6 I6 I6 I6 H"
+    "I1 I1 I1 I2 I2 I2"
+    "T T T T I5 I5"
+    "I7 I7 I7 I7 I5 I5"
+    "I3 I3 I3 I4 I4 I4";
+  }
+}
+
+@media (min-width: $xl) {
+  .gallery-grid {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows:  repeat(3, $px-10*43);
+    grid-template-areas:
+    "I1 I1 I1 I5 I5 I5 I6 I6 I6 I6 I6 H"
+    "I2 I2 I2 I5 I5 I5 I3 I3 I3 I4 I4 I4"
+    "T T T T T T T I7 I7 I7 I7 I7";
+  }
+}

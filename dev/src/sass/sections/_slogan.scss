@@ -1,0 +1,40 @@
+.slogan-grid {
+  padding: 1px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 35vh auto 35vh;
+  grid-template-areas:
+    "I1"
+    "T"
+    "I2";
+  .image-area-1{
+    grid-area: I1;
+  }
+  .image-area-2{
+    grid-area: I2;
+  }
+  .text-area{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (min-width: $md) {
+  .slogan-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, 50vh);
+    grid-template-areas:
+    "I1 I2"
+    "T T";
+  }
+}
+
+@media (min-width: $xl) {
+  .slogan-grid {
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "I1 T I2";
+  }
+}

@@ -1,11 +1,22 @@
 @each $name, $value in $colors{
   .text-#{$name}{
     color: $value;
+    transition: all $fast;
   }
 }
 
-@each $name, $value in $colors{
+@each $name, $value in $lights{
   .bg-#{$name}{
+    transition: all $fast;
     background-color: $value;
+    color: $dark;
+  }
+}
+
+@each $name, $value in $darks{
+  .bg-#{$name}{
+    transition: all $fast;
+    background-color: $value;
+    color: $gray-light;
   }
 }

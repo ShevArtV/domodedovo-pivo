@@ -9,9 +9,16 @@
 @font-face {
   font-family: 'Cuprum Bold';
   font-weight: 700;
-  font-style: italic;
+  font-style: normal;
   font-display: swap;
   src: url('../fonts/CuprumBold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Cuprum Bold Italic';
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  src: url('../fonts/CuprumBoldItalic.woff2') format('woff2');
 }
 
 @font-face {
@@ -20,6 +27,14 @@
   font-style: normal;
   font-display: swap;
   src: url('../fonts/CuprumRegular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Capitalist Regular';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('../fonts/CapitalistRegular.woff2') format('woff2');
 }
 
 @font-face {

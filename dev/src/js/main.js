@@ -10,21 +10,23 @@ document.addEventListener('readystatechange', function () {
             main: document.querySelector('.jsMain'),
             wrap: document.querySelector('.jsSiteWrap'),
             menu: document.querySelector('#menu'),
+            lazyLoadAttr: 'data-msrc',
             scrollHideElems: document.querySelectorAll('.jsScrollHide'),
             sections: document.querySelectorAll('.jsSection'),
             navLinks: document.querySelectorAll('.nav-link'),
             sliders: document.querySelectorAll('.swiper'),
+            galleries: document.querySelectorAll('.jsGallery'),
             togglers: document.querySelectorAll('.jsToggler'),
             mqLg: window.matchMedia('(min-width: 992px)').matches,
 
-            fixedMenu: function(scrollHideElems, parentNode, offsetTop, mq){
+            fixedMenu: function (scrollHideElems, parentNode, offsetTop, mq) {
                 if (offsetTop - window.pageYOffset <= 30 && mq) {
                     scrollHideElems.forEach(el => {
                         el.classList.add('d-none');
                     });
                     parentNode.classList.add('fixed-menu');
                 }
-                if(window.pageYOffset < 30 || !mq){
+                if (window.pageYOffset < 30 || !mq) {
                     scrollHideElems.forEach(el => {
                         el.classList.remove('d-none');
                         if (el.classList.contains('d-none')) {
@@ -58,7 +60,7 @@ document.addEventListener('readystatechange', function () {
             window.onresize = function () {
                 projectScripts.mqLg = window.matchMedia('(min-width: 992px)').matches;
                 // фиксируем меню на ПК
-                if(projectScripts.menu){
+                if (projectScripts.menu) {
                     projectScripts.fixedMenu(
                         projectScripts.scrollHideElems,
                         projectScripts.menu.parentNode,
@@ -76,22 +78,51 @@ document.addEventListener('readystatechange', function () {
                 );
             };
 
+            // init sliders
             if (projectScripts.sliders.length) {
-                let params = [
-                    {
+                const sliderParams = {
+                    "big":{
+                            direction: 'horizontal',
+                            loop: true,
+                            slidesPerView: 1,
+                            spaceBetween: 1,
+                            navigation: {
+                                nextEl: '.swiper-button-next',
+                                prevEl: '.swiper-button-prev',
+                            },
+                        },
+                    "medium": {
                         direction: 'horizontal',
                         loop: true,
                         slidesPerView: 1,
                         spaceBetween: 1,
+                        lazy: true,
+                        breakpoints: {
+                            576: {
+                                slidesPerView: 2
+                            },
+
+                            768: {
+                                slidesPerView: 3,
+                            },
+
+                            1200: {
+                                slidesPerView: 4,
+                            }
+                        },
+                        pagination: {
+                            el: '.swiper-pagination',
+                            type: 'bullets',
+                            clickable: true
+                        },
                         navigation: {
                             nextEl: '.swiper-button-next',
                             prevEl: '.swiper-button-prev',
                         },
                     }
-                ];
-                functions.loadScript('assets/project_files/js/swiper-bundle.min.js', () => functions.initSliders(projectScripts.sliders, params));
+                };
+                functions.loadScript('assets/project_files/js/swiper-bundle.min.js', () => functions.initSliders(projectScripts.sliders, sliderParams));
             }
-
 
             const anchors = document.querySelectorAll('a[href*="#"]');
             for (let i = 0; i < anchors.length; i++) {
@@ -136,10 +167,10 @@ document.addEventListener('readystatechange', function () {
 
             // отслеживаем прокрутку
             window.addEventListener('scroll', function () {
-                functions.lazyLoad();
+                functions.lazyLoad(projectScripts.lazyLoadAttr);
 
                 // фиксируем меню на ПК
-                if(projectScripts.menu){
+                if (projectScripts.menu) {
                     projectScripts.fixedMenu(
                         projectScripts.scrollHideElems,
                         projectScripts.menu.parentNode.parentNode,
@@ -148,7 +179,7 @@ document.addEventListener('readystatechange', function () {
                     );
                 }
             });
-            functions.lazyLoad();
+            functions.lazyLoad(projectScripts.lazyLoadAttr);
         }
 
         documentReady();

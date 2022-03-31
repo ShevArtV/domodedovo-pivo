@@ -1,0 +1,96 @@
+.big-slider {
+  padding: 1px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 60px;
+  grid-template-areas:
+        "S S"
+        "P N";
+
+  .swiper {
+    background-color: transparent;
+  }
+
+  .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    background-color: $body-bg;
+    transition: all $fast;
+    &:hover {
+      color: $black
+    }
+  }
+
+  .swiper-notification {
+    display: none !important;
+  }
+
+  // slide inner elements
+  .slide-content {
+    max-height: 648px;
+
+    .img-inner {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .slide-content:not(.h-100) {
+    min-height: 33.75vw;
+
+    .img-inner {
+      max-height: 45vh;
+    }
+  }
+
+  .slide-content.h-100 {
+    min-height: 100%;
+
+    .img-inner {
+      min-height: 100%;
+      max-height: 45vh;
+    }
+  }
+
+  .slide-footer {
+    border-top: 1px solid $border-color;
+    flex-grow: 1;
+  }
+
+  .slide-title {
+    position: absolute;
+    top: $px-25;
+    left: 0;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+    z-index: 31;
+  }
+}
+
+// media queries
+@media (min-width: $lg) {
+  .big-slider {
+    .slide-footer {
+      max-height: 160px;
+    }
+
+    .slide-content:not(.h-100) {
+      min-height: 25.3vw;
+
+      .img-inner {
+        max-height: 100%;
+      }
+    }
+  }
+}
+
+@media (min-width: $xl) {
+  .big-slider {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr;
+    padding-top: 0;
+    grid-template-areas:
+        "P S S S S S S S S S S N";
+  }
+}

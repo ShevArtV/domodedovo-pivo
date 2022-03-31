@@ -40,8 +40,7 @@ body {
 }
 
 /* Remove list styles on ul, ol elements with a class attribute */
-ul[class],
-ol[class] {
+ul[class]{
   list-style: none;
 }
 
@@ -53,7 +52,6 @@ a:not([class]) {
 /* Make images easier to work with */
 img {
   max-width: 100%;
-  display: block;
 }
 
 /* Natural flow and rhythm in articles by default */

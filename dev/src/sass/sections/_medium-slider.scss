@@ -1,0 +1,30 @@
+.medium-slider{
+  padding: 1px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+        "H H"
+        "S S"
+        "P N";
+.swiper-pagination{
+  display: none;
+}
+.swiper-slide{
+    background-color: $body-bg;
+  }
+  .swiper{
+    background-color: $dark !important;
+  }
+}
+
+@media (min-width: $sm){
+  .medium-slider{
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-areas:
+        "H H H H H H H H H H H H"
+        "S S S S S S S S S S S S"
+        "P D D D D D D D D D D N";
+    .swiper-pagination{
+      display: flex;
+    }
+  }
+}

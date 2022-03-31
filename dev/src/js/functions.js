@@ -79,7 +79,7 @@ export function scrollIntoView(anchor) {
 }
 
 // определение видимости элемента
-export function visible(target) {
+export function isVisible(target) {
     let targetPosition = {
             top: window.pageYOffset + target.getBoundingClientRect().top,
             bottom: window.pageYOffset + target.getBoundingClientRect().bottom
@@ -100,13 +100,13 @@ export function lazyLoad(lazyLoadAttr) {
     lazyLoadAttr = lazyLoadAttr || 'data-src';
     let media = document.querySelectorAll('[' + lazyLoadAttr + ']');
     media.forEach(function (elem) {
-        if (visible(elem)) {
+        if (isVisible(elem)) {
             if (elem.tagName == 'IMG' || elem.tagName == 'IFRAME') {
-                elem.src = elem.dataset.src;
+                elem.src = elem.dataset[lazyLoadAttr.replace('data-', '')];
             } else {
-                elem.style.backgroundImage = 'url(' + elem.dataset.src + ')';
+                elem.style.backgroundImage = 'url(' + elem.dataset[lazyLoadAttr.replace('data-', '')] + ')';
             }
-            elem.removeAttribute('data-src');
+            elem.removeAttribute(lazyLoadAttr);
         }
     });
 }
@@ -146,9 +146,9 @@ export function initSliders(sliders, params) {
         link.setAttribute('rel', 'stylesheet');
         link.setAttribute('href', 'assets/project_files/css/swiper.min.css');
         document.head.appendChild(link);
-
         sliders.forEach(function (elem, i) {
-            new Swiper(elem, params[i]);
+            let paramsId = elem.dataset.params;
+            new Swiper(elem, params[paramsId]);
         });
     }
 }

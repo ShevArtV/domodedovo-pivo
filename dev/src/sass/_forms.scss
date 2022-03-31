@@ -1,0 +1,63 @@
+.form-group {
+  position: relative;
+
+  .input-label, .input-error {
+    position: absolute;
+    z-index: 1;
+    transition: all $fast;
+  }
+
+  .input-label {
+    color: $dark;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    padding:$px-10*2.65;
+
+    i {
+      font-size: $px-10 * .8;
+    }
+  }
+
+  .input-error {
+    top: 50%;
+    transform: translateY(-50%);
+    left: $px-10*3.2;
+    opacity: 0;
+  }
+
+  .error.input-error {
+    opacity: 1;
+  }
+
+  .input-field {
+    position: relative;
+    z-index: 2;
+    display: block;
+    padding:$px-10*2.65;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    transition: all $fast;
+    min-height: 100%;
+
+    &:focus {
+      background-color: $white;
+    }
+
+    &:focus + .input-label, &.error + .input-label, &:focus ~ .input-error {
+      opacity: 0;
+    }
+  }
+
+  &:hover .input-label {
+    color: $black;
+    background-color: $white;
+  }
+
+  .btn{
+    padding: 1.07em;
+  }
+}
