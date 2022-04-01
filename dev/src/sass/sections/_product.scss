@@ -1,0 +1,74 @@
+.product-grid {
+  padding: 1px;
+  grid-template-columns:  1fr;
+  grid-template-areas:
+          "I"
+          "H"
+          "E"
+          "O1"
+          "O2"
+          "O3"
+          "C"
+          "F";
+  @for $i from 1 through 3 {
+    .option-area-#{$i} {
+      grid-area: O#{$i};
+    }
+  }
+
+  .color-area {
+    grid-area: C;
+  }
+
+  .color-scale {
+    position: relative;
+    height: 24px;
+
+    .color-name {
+      position: absolute;
+      min-width: max-content;
+      top: calc(100% + $px-10 * 3);
+      left: 0;
+    }
+
+    i {
+      font-size: $px-10*1.2;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+    }
+  }
+
+  .format-area {
+    grid-area: F;
+  }
+
+  .elements-area {
+    grid-area: E;
+  }
+}
+
+@media (min-width: $md) {
+  .product-grid {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas:
+          "I I H H H H"
+          "E E E E E E"
+          "O1 O1 O2 O2 O3 O3"
+          "C C C C C C"
+          "F F F F F F";
+  }
+}
+
+@media (min-width: $lg) {
+  .product-grid {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-areas:
+          "I I H H H"
+          "I I E E E"
+          "I I O1 O2 O3"
+          "I I C C C"
+          "I I F F F";
+
+  }
+}

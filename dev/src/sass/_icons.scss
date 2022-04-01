@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?a6c56y');
-  src:  url('../fonts/icomoon.eot?a6c56y#iefix') format('embedded-opentype'),
-  url('../fonts/icomoon.ttf?a6c56y') format('truetype'),
-  url('../fonts/icomoon.woff?a6c56y') format('woff'),
-  url('../fonts/icomoon.svg?a6c56y#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot');
+  src:  url('../fonts/icomoon.eot#iefix') format('embedded-opentype'),
+  url('../fonts/icomoon.ttf') format('truetype'),
+  url('../fonts/icomoon.woff') format('woff'),
+  url('../fonts/icomoon.svg#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-triangle:before {
+  content: "\e909";
+}
 .icon-airplane-left:before {
   content: "\e900";
 }

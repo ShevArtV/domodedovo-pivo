@@ -169,8 +169,11 @@ export function changeContentPadding(header,footer,main,wrap,sections) {
     sections.forEach(function (section, i) {
         if (i !== sections.length - 1 && sections.length > 1) {
             minHeight = document.documentElement.clientHeight - header.clientHeight;
+
         }
-        section.style.minHeight = minHeight + 'px';
+        if(i === 0){
+            section.style.minHeight = minHeight + 'px';
+        }
         if(i === 0 && section.querySelector('.big-slider')){
             section.querySelector('.big-slider').style.minHeight = minHeight - 20 + 'px';
         }

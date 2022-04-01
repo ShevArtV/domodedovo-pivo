@@ -1,0 +1,36 @@
+.ask-form-grid {
+  padding: 1px;
+  grid-template-areas:
+      "H"
+      "F1"
+      "F2"
+      "F3"
+      "F4"
+      "F5"
+      "B";
+  @for $i from 1 through 5 {
+    .field-area-#{$i} {
+      grid-area: F#{$i};
+    }
+  }
+  .btn-area{
+    grid-area: B;
+  }
+}
+@media (min-width: $sm) {
+  .ask-form-grid {
+    grid-template-areas:
+      "H H"
+      "F1 F2"
+      "F3 F4"
+      "F5 B";
+  }
+}
+@media (min-width: $lg) {
+  .ask-form-grid {
+    grid-template-areas:
+      "H H H H"
+      "F1 F2 F3 F4"
+      "F5 F5 F5 B";
+  }
+}

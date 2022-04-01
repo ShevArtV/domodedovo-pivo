@@ -10,6 +10,11 @@
       border-right: none;
     }
   }
+  .category-content{
+    .product-preview{
+      border-right: 1px solid $border-color;
+    }
+  }
   .footer-area{
     margin-top: -2px;
     border-top: 1px solid $border-color;
@@ -27,6 +32,11 @@
         border-right: none;
       }
     }
+    .category-content{
+      .product-preview:nth-child(2n){
+        border-right: 1px solid $border-color;
+      }
+    }
   }
 }
 @media (min-width:$lg){
@@ -38,6 +48,11 @@
       }
       .product-preview:nth-child(3n){
         border-right: none;
+      }
+    }
+    .category-content{
+      .product-preview:nth-child(3n){
+        border-right: 1px solid $border-color;
       }
     }
   }

@@ -17,6 +17,7 @@ document.addEventListener('readystatechange', function () {
             sliders: document.querySelectorAll('.swiper'),
             galleries: document.querySelectorAll('.jsGallery'),
             togglers: document.querySelectorAll('.jsToggler'),
+            faqs: document.querySelectorAll('.faq-item'), // коллекция вопросов
             mqLg: window.matchMedia('(min-width: 992px)').matches,
 
             fixedMenu: function (scrollHideElems, parentNode, offsetTop, mq) {
@@ -40,14 +41,45 @@ document.addEventListener('readystatechange', function () {
         };
 
         function documentReady() {
+
+            // переключатель
             if (projectScripts.togglers.length) {
                 projectScripts.togglers.forEach(el => {
                     let target = document.getElementById(el.dataset.target);
                     if (target) {
-                        el.addEventListener('click', () => target.classList.toggle('active'));
+                        el.addEventListener('click', () => {                            
+                            target.classList.toggle('active');
+                        });
                     }
                 });
             }
+
+            /* вешаем обработчики на вопросы и ответы */
+            if (projectScripts.faqs.length) {
+                const faqs = projectScripts.faqs,
+                    faqColumns = document.querySelectorAll('.faq-column');
+                faqs.forEach(function (elem) {
+                    let answer = elem.querySelector('.answer'),
+                        curPaddingBottom = Number(window.getComputedStyle(elem).paddingBottom.replace('px', ''));
+                    answer.style.bottom = curPaddingBottom + 'px';
+                    elem.addEventListener('click', function (e) {
+                        faqs.forEach(el => {
+                            if(el !== elem){
+                                el.classList.remove('active');
+                                el.style.paddingBottom = curPaddingBottom + 'px';
+                            }
+                        });
+                        if (!elem.classList.contains('active')) {
+                            elem.style.paddingBottom = (answer.scrollHeight + curPaddingBottom * 2) + 'px';
+                            elem.classList.add('active');
+                        } else {
+                            elem.style.paddingBottom = curPaddingBottom + 'px';
+                            elem.classList.remove('active');
+                        }
+                    });
+                });
+            }
+            /* вешаем обработчики на вопросы и ответы */
 
             // выставляем внутренние отступы для контентной части страницы
             functions.changeContentPadding(
@@ -57,6 +89,7 @@ document.addEventListener('readystatechange', function () {
                 projectScripts.wrap,
                 projectScripts.sections
             );
+
             window.onresize = function () {
                 projectScripts.mqLg = window.matchMedia('(min-width: 992px)').matches;
                 // фиксируем меню на ПК
