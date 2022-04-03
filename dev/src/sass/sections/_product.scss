@@ -41,12 +41,20 @@
 
   .format-area {
     grid-area: F;
+    .format-item{
+      padding-left: $px-5;
+      padding-right: $px-5;
+    }
   }
 
   .elements-area {
     grid-area: E;
   }
+  .image-area img{
+    max-height: 350px;
+  }
 }
+
 
 @media (min-width: $md) {
   .product-grid {
@@ -57,6 +65,9 @@
           "O1 O1 O2 O2 O3 O3"
           "C C C C C C"
           "F F F F F F";
+    .image-area img{
+      max-height: unset;
+    }
   }
 }
 

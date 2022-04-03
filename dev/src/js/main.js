@@ -144,7 +144,7 @@ document.addEventListener('readystatechange', function () {
                             }
                         },
                         pagination: {
-                            el: '.swiper-pagination',
+                            el: '.swiper-pagination-medium',
                             type: 'bullets',
                             clickable: true
                         },
@@ -152,7 +152,18 @@ document.addEventListener('readystatechange', function () {
                             nextEl: '.swiper-button-next',
                             prevEl: '.swiper-button-prev',
                         },
-                    }
+                    },
+                    "small":{
+                        direction: 'horizontal',
+                        loop: true,
+                        slidesPerView: 1,
+                        spaceBetween: 1,
+                        pagination: {
+                            el: '.swiper-pagination-small',
+                            type: 'bullets',
+                            clickable: true
+                        },
+                    },
                 };
                 functions.loadScript('assets/project_files/js/swiper-bundle.min.js', () => functions.initSliders(projectScripts.sliders, sliderParams));
             }

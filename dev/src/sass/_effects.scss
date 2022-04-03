@@ -1,34 +1,131 @@
-.interactive-block:hover{
-  .title-decor{
-    *{
-      background-color: $white;
-    }
-    &:before, &:after{
-      background-color: $dark;
-    }
-  }
-}
-.interactive-block, .hover-color-sand, .gray-img{
+.interactive-block,
+*[class*="bg-"]:not(.interactive-block),
+.product-preview,
+.title-decor > *,
+.title-decor:before,
+.title-decor:after,
+.gray-img,
+.hover-color-gold,
+.hover-color-sand{
   transition: all $fast;
 }
 .gray-img{
   filter:grayscale(100%);
 }
+.text-block{
+  a{
+    font-family: 'Cuprum Bold Italic';
+    text-decoration: underline;
+    color: $black;
+    transition: all $fast;
+  }
+  a:hover{
+    text-decoration: none;
+    color: $dark;
+  }
+}
+.bg-sand-on-hover{
+  color: $dark;
+  .title-decor__under {
+    &:before, &:after {
+      transition: all $fast;
+      opacity: 0;
+    }
+  }
+
+  .specifications, .link {
+    transition: all $fast;
+    opacity: 0;
+  }
+  &:hover {
+    color: $black;
+
+    .title-decor__under {
+      &:before, &:after {
+        opacity: 1;
+      }
+    }
+
+    background-color: $sand !important;
+
+    .specifications, .link {
+      opacity: 1;
+    }
+  }
+}
+
 .interactive-block:hover{
-  background-color: $white !important;
-  color:$black !important;
+  background-color: $white;
+  color:$black;
+  .hr{
+    background-color: $black;
+  }
   .gray-img{
     filter: grayscale(0);
   }
   .hover-color-sand{
     color: $sand;
   }
+  .hover-color-gold{
+    background: linear-gradient(90deg, #F9BE00,
+      #FDDD2E,
+      #FDDD2E,
+      #F69405);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: $sand;
+  }
+  .title-decor{
+    &:before, &:after{
+      background-color: $dark;
+    }
+  }
+  .title-decor:not(.title-decor__under):not(.title-decor__top-bottom){
+    *{
+      background-color: $white;
+    }
+  }
 }
 
 @each $name, $value in $darks{
+  .bg-#{$name}{
+    .text-block{
+      a{
+        font-family: 'Cuprum Bold Italic';
+        text-decoration: underline;
+        color: $white;
+      }
+      a:hover{
+        text-decoration: none;
+        color: $gray-light;
+      }
+    }
+  }
   .bg-#{$name}.interactive-block:hover{
     background-color: $black;
     color:$white;
+    .hr{
+      background-color: $white;
+    }
+    .text-block{
+      a{
+        color: $white;
+      }
+      a:hover{
+        color: $gray-light;
+      }
+    }
+
+    .title-decor{
+      &:before, &:after{
+        background-color: $white;
+      }
+    }
+    .title-decor:not(.title-decor__under):not(.title-decor__top-bottom){
+      *{
+        background-color: $black;
+      }
+    }
   }
 }
 
@@ -36,6 +133,17 @@
   .bg-#{$name}.interactive-block:hover{
     background-color: $white;
     color:$black;
+    .hr{
+      background-color: $black;
+    }
+    .text-block{
+      a{
+        color: $black;
+      }
+      a:hover{
+        color: $dark;
+      }
+    }
   }
 }
 
