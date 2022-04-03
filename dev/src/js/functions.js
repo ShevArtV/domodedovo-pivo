@@ -114,13 +114,14 @@ export function lazyLoad(lazyLoadAttr) {
 // Маска ввода номера телефона
 export function phoneMask(event) {
     if (!(event.key == 'ArrowLeft' || event.key == 'ArrowRight' || event.key == 'Backspace' || event.key == 'Tab')) {
-        event.preventDefault()
+        event.preventDefault();
     }
+    const change = new Event('change');
     let mask = '+7(111)111-11-11'; // Задаем маску
 
     if (/[0-9\+\ \-\(\)]/.test(event.key)) {
 
-        let currentString = this.value;
+        let currentString = event.target.value;
         let currentLength = currentString.length;
 
         if (/[0-9]/.test(event.key)) {
@@ -130,13 +131,14 @@ export function phoneMask(event) {
                     if (i == 3 && number != '9') {
                         number = '';
                     }
-                    this.value = currentString + number;
+                    event.target.value = currentString + number;
                     break;
                 }
                 currentString += mask[i];
             }
         }
     }
+    event.target.dispatchEvent(change);
 }
 
 // инициализируем слайдер
@@ -178,4 +180,22 @@ export function changeContentPadding(header,footer,main,wrap,sections) {
             section.querySelector('.big-slider').style.minHeight = minHeight - 20 + 'px';
         }
     });
+}
+
+// функция обработки файлов
+export function fileHandler(e) {
+    let parent = e.target.closest('.form-group'),
+        fileName = parent.querySelector('.jsFileName'),
+        fileBtn = parent.querySelector('.jsFileBtn'),
+        fileBtnCurText = fileBtn.innerText,
+        fileBtnNextText = fileBtn.dataset.text;
+    if (e.target.files.length == 1) {
+        fileName.innerText = e.target.files[0].name;
+        if(fileBtnCurText === 'Прикрепить'){
+            fileBtn.innerText = fileBtnNextText;
+            fileBtn.dataset.text = fileBtnCurText;
+        }
+    } else {
+        fileName.innerText = fileName.dataset.text;
+    }
 }

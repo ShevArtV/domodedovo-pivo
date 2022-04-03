@@ -1,0 +1,28 @@
+.contact-form-grid {
+  padding: 1px;
+  grid-template-areas:
+      "H"
+      "F1"
+      "F2"
+      "F3"
+      "F4"
+      "B";
+  @for $i from 1 through 4 {
+    .field-area-#{$i} {
+      grid-area: F#{$i};
+    }
+  }
+  .btn-area{
+    grid-area: B;
+  }
+}
+
+@media (min-width: $sm) {
+  .contact-form-grid {
+    grid-template-areas:
+      "H H"
+      "F1 F4"
+      "F2 F4"
+      "F3 B";
+  }
+}

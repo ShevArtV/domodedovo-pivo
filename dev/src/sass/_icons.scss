@@ -24,6 +24,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.icon-socials:before {
+  content: "\e917";
+}
+.icon-address:before {
+  content: "\e914";
+}
+.icon-phone:before {
+  content: "\e915";
+}
+.icon-resume:before {
+  content: "\e916";
+}
 .icon-alcohol:before {
   content: "\e90a";
 }

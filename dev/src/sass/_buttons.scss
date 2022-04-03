@@ -19,6 +19,14 @@
   }
 }
 
+.btn-white{
+  color:$border-color;
+  &:hover{
+    color: $black;
+    background-color: $gray-light;
+  }
+}
+
 .btn.bg-gold-gradient-2{
   color: $black;
   cursor: pointer;

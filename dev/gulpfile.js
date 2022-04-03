@@ -31,6 +31,7 @@ gulp.task('jsBuild', function () {
     return gulp.src([
         'node_modules/swiper/swiper-bundle.js',
         'node_modules/jquery/dist/jquery.js',
+        'node_modules/@fancyapps/ui/dist/fancybox.umd.js',
         assetsDir + '/js/**/*.js',
         '!'+assetsDir + '/js/**/*.min.js'])
         .pipe(uglify())

@@ -6,6 +6,8 @@
 .title-decor:after,
 .gray-img,
 .hover-color-gold,
+.dark-on-hover,
+.orange-on-hover,
 .hover-color-sand{
   transition: all $fast;
 }
@@ -50,39 +52,6 @@
 
     .specifications, .link {
       opacity: 1;
-    }
-  }
-}
-
-.interactive-block:hover{
-  background-color: $white;
-  color:$black;
-  .hr{
-    background-color: $black;
-  }
-  .gray-img{
-    filter: grayscale(0);
-  }
-  .hover-color-sand{
-    color: $sand;
-  }
-  .hover-color-gold{
-    background: linear-gradient(90deg, #F9BE00,
-      #FDDD2E,
-      #FDDD2E,
-      #F69405);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: $sand;
-  }
-  .title-decor{
-    &:before, &:after{
-      background-color: $dark;
-    }
-  }
-  .title-decor:not(.title-decor__under):not(.title-decor__top-bottom){
-    *{
-      background-color: $white;
     }
   }
 }
@@ -146,4 +115,9 @@
     }
   }
 }
-
+.dark-on-hover:hover{
+  color: $dark !important;
+}
+.orange-on-hover:hover{
+  color:#fdc404 !important;
+}

@@ -1,4 +1,4 @@
-.header-grid {
+.header-grid, .footer-grid {
   position: relative;
   padding: 1px;
   grid-template-columns: repeat(3, 1fr);
@@ -65,7 +65,7 @@
 }
 
 @media (min-width: $sm) {
-  .header-grid {
+  .header-grid, .footer-grid {
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
     "L I I D";
@@ -90,7 +90,7 @@
 }
 
 @media (min-width: $lg) {
-  .header-grid {
+  .header-grid, .footer-grid {
     position: static;
     grid-template-columns: repeat(6, 1fr);
     grid-template-areas:
@@ -115,7 +115,7 @@
 .fixed-menu{
   position: fixed;
   top:-1px;
-  left:50%;
+  left: 50%;
   transform: translateX(-50%);
   width: 100%;
 
@@ -124,7 +124,7 @@
   }
 }
 @media (min-width: $xxxl) {
-  .header-grid {
+  .header-grid, .footer-grid {
     .link-area, .date-area {
       padding: $vw-10*3.5 $vw-10*8;
     }
@@ -132,7 +132,7 @@
 }
 
 @media (min-width: $wide) {
-  .header-grid {
+  .header-grid, .footer-grid {
     .link-area, .date-area {
       padding: $px-10*4 $px-10*9;
     }

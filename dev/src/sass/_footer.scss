@@ -1,3 +1,78 @@
-.main-footer {
+.footer-grid {
+  display: grid;
+  padding: 0 1px;
+  gap: 1px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+  "D B B B"
+  "P P P P"
+  "C C C C";
 
+  & > * {
+    background-color: $border-color;
+  }
+
+  .menu-area {
+    grid-area: M;
+  }
+
+  .link-area {
+    grid-area: L;
+  }
+
+  .date-area {
+    grid-area: B;
+  }
+
+  .politic-area {
+    grid-area: P;
+  }
+
+  .copyright-area {
+    grid-area: C;
+  }
+
+  .develop-area {
+    grid-area: D;
+  }
+
+  .logo-area, .link-area {
+    display: none;
+  }
+
+  color: $white;
+
+  a:not(.btn):not(.text-dark) {
+    color: $white;
+  }
+
+  .nav-item {
+    .nav-link {
+      color: $white;
+    }
+  }
+}
+
+@media (min-width: $md) {
+  .footer-grid {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-areas:
+    "M M M M M M M M M M M M"
+    "L L L I I I I I I B B B"
+    "P P P C C C C C C D D D";
+
+    .logo-area, .link-area {
+      display: flex;
+    }
+  }
+}
+
+@media (min-width: $xl) {
+  .footer-grid {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas:
+    "M M M M M M"
+    "L I I I I B"
+    "P C C C C D";
+  }
 }

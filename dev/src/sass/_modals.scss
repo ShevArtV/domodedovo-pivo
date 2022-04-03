@@ -1,0 +1,72 @@
+.fancybox__backdrop {
+  background: rgba(255, 255, 255, .9) !important;
+}
+
+.carousel__button, .fancybox__counter, .fancybox__caption {
+  color: $dark !important;
+}
+
+.fancybox__content {
+  color: $body-color !important;
+  padding: 0 !important;
+  width: 100%;
+
+  .carousel__button.is-close {
+    display: block;
+    top: -($px-10*8) !important;
+    right: 5px !important;
+
+    svg {
+      display: none;
+    }
+
+    &:before {
+      content: "\e90f";
+      font-family: 'icomoon';
+      font-size: $px-10*5;
+      line-height: 1;
+      display: block;
+    }
+  }
+}
+
+.fancybox__carousel .fancybox__slide.has-pdf .fancybox__content {
+  height: 85vh !important;
+  width: 100% !important;
+}
+
+.modal {
+  display: none;
+  background-color: $body-bg;
+}
+
+#shop-points {
+  height: 90vh;
+
+  .map-block iframe {
+    min-height: 100%;
+  }
+}
+
+@media (min-width: $sm) {
+  .fancybox__content {
+    width: 75vw;
+
+    .carousel__button.is-close {
+      top: 0 !important;
+      right: -($px-10*8) !important;
+    }
+  }
+  .fancybox__carousel .fancybox__slide.has-pdf .fancybox__content {
+    height: 90vh !important;
+    width: 60% !important;
+  }
+}
+
+@media (min-width: $lg) {
+  .fancybox__content {
+    max-width: $px-10*113.8;
+    padding: 0 !important;
+    width: 60vw;
+  }
+}
