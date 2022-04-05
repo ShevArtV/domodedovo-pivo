@@ -26,6 +26,30 @@
     color: $dark;
   }
 }
+.interactive-block:hover{
+  background-color: $white;
+  color:$black;
+  .title-decor:not(.title-decor__under):not(.title-decor__top-bottom){
+    *{
+      background-color: $white;
+    }
+  }
+  .gray-img{
+    filter:grayscale(0);
+  }
+}
+
+.footer-grid{
+  .interactive-block:hover{
+    background-color: $black;
+    color:$white;
+    .title-decor:not(.title-decor__under):not(.title-decor__top-bottom){
+      *{
+        background-color: $black;
+      }
+    }
+  }
+}
 .bg-sand-on-hover{
   color: $dark;
   .title-decor__under {

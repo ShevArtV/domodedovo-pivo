@@ -199,3 +199,35 @@ export function fileHandler(e) {
         fileName.innerText = fileName.dataset.text;
     }
 }
+
+//функция отправки ajax
+export function sendAjax(url, params, callback, method, type) {
+    const request = new XMLHttpRequest();
+    url = url || document.location.href;
+    method = method || 'POST';
+    request.open(method, url, true);
+    request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    request.responseType = type || 'json';
+    request.addEventListener('readystatechange', function () {
+        if (request.readyState === 4 && request.status === 200) {
+            callback(request.response);
+        }
+    });
+    request.send(params);
+}
+
+// функция разворачивания svg
+export function getImgData(el, response) {
+    let svg = new DOMParser().parseFromString(response, "text/html").getElementsByTagName("svg")[0];
+    svg.removeAttribute('xmlns');
+    if (el.getAttribute('id')) {
+        svg.setAttribute('id', el.getAttribute('id'));
+    }
+    if (el.getAttribute('class')) {
+        svg.setAttribute('class', el.getAttribute('class'));
+    }
+    if (!svg.getAttribute('viewBox') && svg.getAttribute('height') && svg.getAttribute('width')) {
+        svg.setAttribute('viewBox', '0 0 ' + svg.getAttribute('height') + svg.getAttribute('width'));
+    }
+    el.replaceWith(svg);
+}

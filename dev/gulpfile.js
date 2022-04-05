@@ -10,19 +10,18 @@ var gulp          = require('gulp'),
     notify        = require('gulp-notify');
 
 var assetsDir = 'src',
-    coreDir = '../public_html/',
+    coreDir = '../public_html/core/',
     pagesSrc = coreDir+'**/*.html',
+    domain = 'http://domodedovo-pivo',
     productionDir = '../public_html/assets/project_files';
 
 //----------------------------------------------------Compiling
 
 gulp.task('browser-sync', function() {
     browserSync.init({
-        server: {
-            baseDir: "../public_html/"
-        },
+        proxy: domain,
         port: 8080,
-        open: false,
+        open: true,
         notify: false
     });
 });
@@ -67,9 +66,8 @@ gulp.task('default', gulp.series('browser-sync','sass', 'cssBuild','jsBuild'));
 
 gulp.task('watch', function() {
     browserSync.init({
-        server: {
-            baseDir: "../public_html/"
-        },
+        proxy: domain,
+        port: 8080,
         open: true,
         notify: false
     });

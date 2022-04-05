@@ -21,6 +21,7 @@ document.addEventListener('readystatechange', function () {
             inputFiles: document.querySelectorAll('input[type="file"]'), // коллекция файловых инпутов
             inputText: document.querySelectorAll('.input-field'), // коллекция нефайловых инпутов
             faqs: document.querySelectorAll('.faq-item'), // коллекция вопросов
+            svgImg: document.querySelectorAll('.js-img-svg'),
             mqLg: window.matchMedia('(min-width: 992px)').matches,
 
             fixedMenu: function (scrollHideElems, parentNode, offsetTop, mq) {
@@ -41,7 +42,10 @@ document.addEventListener('readystatechange', function () {
 
             hidePlaceholders: function (el){
                 let parent = el.closest('div'),
+                    error = parent.querySelector('.input-error'),
                     label = parent.querySelector('.input-label');
+                error.classList.remove('error');
+                el.classList.remove('error');
                 if(el.value){
                     label.classList.add('full');
                 }else{
@@ -52,6 +56,17 @@ document.addEventListener('readystatechange', function () {
         };
 
         function documentReady() {
+            /* разворачиваем svg */
+            if(projectScripts.svgImg.length){
+                projectScripts.svgImg.forEach(elem => {
+                    functions.sendAjax(elem.src, {}, function (response) {
+                        functions.getImgData(elem, response);
+                    }, 'GET', 'text');
+                });
+            }
+            /* разворачиваем svg */
+
+
             /* скрываем плейсхолдер */
             if(projectScripts.inputText.length){
                 projectScripts.inputText.forEach(el=>{
@@ -80,7 +95,6 @@ document.addEventListener('readystatechange', function () {
                     projectScripts.fancybox.forEach(el => {
 
                     });
-                    console.log(document.body.scrollWidth);
                     Fancybox.bind("[data-fancybox]", {
                         on: {
                             reveal:(fancybox, slide) =>{

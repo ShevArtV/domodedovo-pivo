@@ -17287,7 +17287,7 @@ ul:not(.list-unstyled) li:before {
   gap: 1px;
   padding-right: 1px;
   padding-bottom: 1px;
-  margin-right: -1px;
+  margin-right: -2px;
   margin-bottom: -1px;
   display: grid;
   grid-template-columns: 1fr;
@@ -18141,6 +18141,26 @@ ul:not(.list-unstyled) li:before {
 .text-block a:hover {
   text-decoration: none;
   color: #2B2A29;
+}
+
+.interactive-block:hover {
+  background-color: #fff;
+  color: #000;
+}
+.interactive-block:hover .title-decor:not(.title-decor__under):not(.title-decor__top-bottom) * {
+  background-color: #fff;
+}
+.interactive-block:hover .gray-img {
+  -webkit-filter: grayscale(0);
+          filter: grayscale(0);
+}
+
+.footer-grid .interactive-block:hover {
+  background-color: #000;
+  color: #fff;
+}
+.footer-grid .interactive-block:hover .title-decor:not(.title-decor__under):not(.title-decor__top-bottom) * {
+  background-color: #000;
 }
 
 .bg-sand-on-hover {
