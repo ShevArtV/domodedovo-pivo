@@ -1,1 +1,25 @@
-        <section class="jsSection py-25">            <div class="container">                <div class="d-grid tcf-grid">                    <div class="interactive-block p-lg-30 p-15">                        <div class="title-decor">                            <h3 class="text-uppercase fs-36 font-hagincapsmedium">для секции на которую нужно обратить внимание</h3>                        </div>                    </div>                    <div class="content-area p-lg-30 p-15">                        <picture>                            <source srcset="assets/project_files/img/common/image-12.jpg" type="image/webp">                            <img data-msrc="assets/project_files/img/common/image-12.jpg" width="1644" height="925" class="flex-img ar-16-9" alt="Bottle"/>                        </picture>                    </div>                </div>            </div>        </section>        
+{set $img = $img | pThumb: 'w=1620&h=910&zc=1&f=jpg'}
+{set $imgMob = $img_mob | pThumb: 'w=630&h=355&zc=1&f=jpg'}
+{set $imgMobWebp = $imgMob | pThumb: 'f=webp'}
+{set $imgWebp = $img | pThumb: 'f=webp'}
+<section class="jsSection py-25">
+    <div class="container">
+        <div class="d-grid tcf-grid">
+            <div class="interactive-block p-lg-30 p-15">
+                <div class="title-decor text-{$title_position}">
+                    <h3 class="text-uppercase fs-36 font-hagincapsmedium">{$title}</h3>
+                </div>
+            </div>
+            <div class="content-area p-lg-30 p-15">
+                <a href="{$target}" class="d-block">
+                    <picture>
+                        <source media="(min-width: 768px)" srcset="{$imgWebp}" type="image/webp">
+                        <source media="(min-width: 768px)" srcset="{$img}" type="image/jpg">
+                        <source srcset="{$imgMobWebp}" type="image/webp">
+                        <img data-msrc="{$imgMob}" sizes="(min-width: 768px) 1620px, 910px" class="flex-img ar-16-9" alt="Bottle"/>
+                    </picture>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

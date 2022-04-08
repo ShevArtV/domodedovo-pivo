@@ -1,0 +1,25 @@
+{set $imgWebp = $img | pThumb: 'f=webp'}
+{if !$img_mob}
+{set $img_mob = $img}
+{/if}
+{set $imgMobWebp = $img_mob | pThumb:'f=webp'}
+<a href="{$id | url}" class="product-preview d-flex flex-column p-lg-30 p-15 text-decoration-none interactive-block">
+    <div class="title mb-20 hover-color-sand">
+        <h4 class="fs-32 font-heroldbold lh-150">
+            {$longtitle?:$pagetitle}
+        </h4>
+    </div>
+    <div class="desc mb-20">
+        <p>
+           {$introtext}
+        </p>
+    </div>
+    <div class="flex-grow">
+        <picture>
+            <source srcset="{$imgWebp}" media="(min-width: 768px)" type="image/webp">
+            <source srcset="{$imgMobWebp}" type="image/webp">
+            <source srcset="{$img}" media="(min-width: 768px)">
+            <img data-msrc="{$imgMob}" class="flex-img gray-img" alt="{$longtitle?:$pagetitle}"/>
+        </picture>
+    </div>
+</a>

@@ -143,7 +143,7 @@ export function phoneMask(event) {
 
 // инициализируем слайдер
 export function initSliders(sliders, params) {
-    if(typeof Swiper !== 'undefined'){
+    if (typeof Swiper !== 'undefined') {
         let link = document.createElement('link');
         link.setAttribute('rel', 'stylesheet');
         link.setAttribute('href', 'assets/project_files/css/swiper.min.css');
@@ -156,7 +156,7 @@ export function initSliders(sliders, params) {
 }
 
 // устанавливаем отступы для контента
-export function changeContentPadding(header,footer,main,wrap,sections) {
+export function changeContentPadding(header, footer, main, wrap, sections) {
     if (window.matchMedia("(min-width: 576px)").matches) {
         header.classList.add('fixed-top');
         header.classList.remove('fixed-bottom');
@@ -173,10 +173,10 @@ export function changeContentPadding(header,footer,main,wrap,sections) {
             minHeight = document.documentElement.clientHeight - header.clientHeight;
 
         }
-        if(i === 0){
+        if (i === 0) {
             section.style.minHeight = minHeight + 'px';
         }
-        if(i === 0 && section.querySelector('.big-slider')){
+        if (i === 0 && section.querySelector('.big-slider')) {
             section.querySelector('.big-slider').style.minHeight = minHeight - 20 + 'px';
         }
     });
@@ -191,7 +191,7 @@ export function fileHandler(e) {
         fileBtnNextText = fileBtn.dataset.text;
     if (e.target.files.length == 1) {
         fileName.innerText = e.target.files[0].name;
-        if(fileBtnCurText === 'Прикрепить'){
+        if (fileBtnCurText === 'Прикрепить') {
             fileBtn.innerText = fileBtnNextText;
             fileBtn.dataset.text = fileBtnCurText;
         }
@@ -230,4 +230,39 @@ export function getImgData(el, response) {
         svg.setAttribute('viewBox', '0 0 ' + svg.getAttribute('height') + svg.getAttribute('width'));
     }
     el.replaceWith(svg);
+}
+
+// инициализируем карту
+export function initMap(mapBlocks) {
+    if (mapBlocks) {
+        mapBlocks.forEach(el => {
+            const {idMap, centerCoords, zoom, iconContent, hintContent, iconPath} = JSON.parse(el.dataset.params);
+
+            ymaps.ready(function () {
+                // Указывается идентификатор HTML-элемента.
+                let coords = centerCoords.split(','),
+                    map = new ymaps.Map(idMap, {
+                        center: coords,
+                        zoom: zoom
+                    }),
+                 myPlacemark = new ymaps.Placemark(coords,{
+                     balloonContent: iconContent,
+                     hintContent: hintContent
+                 }, {
+                     // Опции.
+                     // Необходимо указать данный тип макета.
+                     iconLayout: 'default#image',
+                     // Своё изображение иконки метки.
+                     iconImageHref: iconPath,
+                     // Размеры метки.
+                     iconImageSize: [40, 45],
+                     // Смещение левого верхнего угла иконки относительно
+                     // её "ножки" (точки привязки).
+                     iconImageOffset: [-15, -30]
+                 });
+                map.geoObjects.add(myPlacemark);
+            });
+
+        });
+    }
 }

@@ -1,1 +1,120 @@
-        <section class="jsSection py-25">            <div class="container">                <div class="d-grid tcf-grid">                    <div class="interactive-block p-lg-30 p-15">                        <div class="title-decor">                            <h3 class="text-uppercase fs-36 font-hagincapsmedium">                                Подзаголовок секции                            </h3>                        </div>                    </div>                    <div class="three-column-grid">                        <div class="image-area px-lg-30 pb-lg-30 pt-lg-10 p-15 bg-gray-dark interactive-block">                            <div class="title-decor title-decor__top-bottom py-40">                                <h4 class="fs-32 font-hagincapsmedium lh-150">                                    Текстовая колонка в любом месте как в старой газете                                </h4>                            </div>                            <div class="desc text-block text-justify">                                <p>                                    Повседневная практика показывает, что понимание сути ресурсосберегающих технологий предполагает независимые способы реализации                                    инновационных методов управления процессами. Значимость этих проблем настолько очевидна, что сплочённость команды профессионалов позволяет                                    выполнить важные задания по разработке <a href="#">ссылка на другую страницу</a> переосмысления внешнеэкономических политик.                                </p>                            </div>                        </div>                        <div class="text-area p-lg-30 p-15 interactive-block">                            <ul class="list-unstyled">                                <li class="mb-30 contact-item">                                    <div class="title-block ps-45">                                        <i class="icon-plane-on-shield fs-30"></i>                                        <p class="fs-32 font-hagincapsmedium">Адрес</p>                                    </div>                                    <div class="ps-45">                                        <p>Г.О. Домодедово, дер. Павловское, ул. Колхозная, д.16 стр. 14</p>                                    </div>                                </li>                                <li class="mb-30 contact-item">                                    <div class="title-block ps-45">                                        <i class="icon-plane-on-shield fs-30"></i>                                        <p class="fs-32 font-hagincapsmedium">Адреса фирменных баров</p>                                    </div>                                    <div class="ps-45">                                        <p>г. Домодедово, мкр. Центральный, ул. Кирова, д.1а</p>                                        <p>г. Домодедово, мкр. Западный, ул. Лунная, д.31</p>                                    </div>                                </li>                                <li class="mb-30 contact-item">                                    <div class="title-block ps-45">                                        <i class="icon-plane-on-shield fs-30"></i>                                        <p class="fs-32 font-hagincapsmedium">Номер телефона</p>                                    </div>                                    <div class="ps-45">                                        <a href="#">8(499)754-44-00</a>                                    </div>                                </li>                                <li class="mb-30 contact-item">                                    <div class="title-block ps-45">                                        <i class="icon-plane-on-shield fs-30"></i>                                        <p class="fs-32 font-hagincapsmedium">Социальные сети</p>                                    </div>                                    <div class="ps-45 row">                                        <a href="#" class="col-auto">Instagram</a>                                        <a href="#" class="col-auto">VK</a>                                        <a href="#" class="col-auto">Untappd</a>                                    </div>                                </li>                            </ul>                        </div>                        <form class="form-area d-flex flex-column">                            <div class="form-group border-bottom flex-grow">                                <input type="text" name="name" class="input-field">                                <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Ваше имя</span></label>                                <small class="fs-16 font-cuprumbolditalic input-error error_name text-red"></small>                            </div>                            <div class="form-group border-bottom flex-grow">                                <input type="text" name="organization" class="input-field">                                <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Название организации</span></label>                                <small class="fs-16 font-cuprumbolditalic input-error error_organization text-red"></small>                            </div>                            <div class="form-group border-bottom flex-grow">                                <input type="tel" name="phone" class="input-field">                                <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Ваш номер телефона</span></label>                                <small class="fs-16 font-cuprumbolditalic input-error error_phone text-red"> </small>                            </div>                            <div class="form-group border-bottom flex-grow">                                <input type="text" name="email" class="input-field">                                <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Ваша электронная почта</span></label>                                <small class="fs-16 font-cuprumbolditalic input-error error_email text-red"></small>                            </div>                            <div class="form-group border-bottom flex-grow">                                <input type="text" name="message" class="input-field">                                <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Ваш комментарий</span></label>                                <small class="fs-16 font-cuprumbolditalic input-error error_message text-red"></small>                            </div>                            <div class="form-group flex-grow">                                <button class="btn btn-dark fs-22 w-100 h-100">Отправить запрос</button>                            </div>                        </form>                    </div>                </div>            </div>        </section>        
+{set $ym_id = $_modx->config.ym_id}
+{set $secret = $_modx->config.secret}
+{set $email_from = 'noreply@'~$_modx->config.http_host}
+{set $validateDefault = 'secret:contains=^'~$secret~'^'}
+{set $static_blocks_page_id = $_modx->config.static_blocks_page_id}
+{set $form_list = $static_blocks_page_id | resource: 'form_list' | fromJSON}
+{set $contacts = $parent | get_contacts: 'contacts'}
+<section class="jsSection py-25">
+    <div class="container">
+        <div class="d-grid tcf-grid">
+            <div class="interactive-block p-lg-30 p-15">
+                <div class="title-decor text-{$title_position}">
+                    <h3 class="text-uppercase fs-36 font-hagincapsmedium">
+                        {$title}
+                    </h3>
+                </div>
+            </div>
+            <div class="three-column-grid">
+                <div class="image-area px-lg-30 pb-lg-30 pt-lg-10 p-15 bg-gray-dark interactive-block">
+                    <div class="title-decor title-decor__top-bottom py-40">
+                        <h4 class="fs-32 font-hagincapsmedium lh-150">
+                            {$subtitle}
+                        </h4>
+                    </div>
+                    <div class="desc text-block text-justify">
+                        <p>
+                         {$content}
+                        </p>
+                    </div>
+                </div>
+                <div class="text-area p-lg-30 p-15 interactive-block">
+                    <ul class="list-unstyled">
+                        <li class="mb-30 contact-item">
+                            <div class="title-block ps-45">
+                                <i class="icon-address fs-30"></i>
+                                <p class="fs-32 font-hagincapsmedium">Адрес</p>
+                            </div>
+                            <div class="ps-45">
+                                <p>{$parent | resource: 'address'}</p>
+                            </div>
+                        </li>
+                        <li class="mb-30 contact-item">
+                            <div class="title-block ps-45">
+                                <i class="icon-address fs-30"></i>
+                                <p class="fs-32 font-hagincapsmedium">Адреса фирменных баров</p>
+                            </div>
+                            <div class="ps-45">
+                                {'pdoResources' | snippet:[
+                                    'parents' => 14,
+                                    'where' => ['template' => 7],
+                                    'includeTVs' => 'address',
+                                    'tvPrefix' => '',
+                                    'limit' => 0,
+                                    'tpl' => '@INLINE <p>{$address}</p>'
+                                ]}
+                            </div>
+                        </li>
+                        <li class="mb-30 contact-item">
+                            <div class="title-block ps-45">
+                                <i class="{$contacts.phones[0].icon_class} fs-30"></i>
+                                <p class="fs-32 font-hagincapsmedium">Номер телефона</p>
+                            </div>
+                            <div class="ps-45 row">
+                                {foreach $contacts.phones as $item}
+                                <a href="tel:{$item.value}" class="col-auto">{$item.formattedValue}</a>
+                                {/foreach}
+                            </div>
+                        </li>
+                        <li class="mb-30 contact-item">
+                            <div class="title-block ps-45">
+                                <i class="{$contacts.socials[0].icon_class} fs-30"></i>
+                                <p class="fs-32 font-hagincapsmedium">Социальные сети</p>
+                            </div>
+                            <div class="ps-45 row">
+                                {foreach $contacts.socials as $item}
+                                <a href="{$item.value}" class="col-auto">{$item.caption}</a>
+                                {/foreach}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                {if $form_list}
+                {foreach $form_list as $form}
+                    {if $form.fid == 'contactForm'}
+                        ##'!AjaxForm' | snippet : [
+                        'form' =>  '@FILE chunks/forms/{$form.fid}.html',
+                        'snippet' => 'FormIt',
+                        'hooks' => 'FormItSaveForm,email',
+                        'emailSubject' => '{$form.name}',
+                        'emailTo' => '{$form.emails}',
+                        'emailFrom' => '{$email_from}',
+                        'emailTpl' => '@FILE chunks/emails/tplFormEmail.html',
+                        'validate' => '{$form.validate~$validateDefault}',
+                        'validationErrorMessage' => 'Исправьте, пожалуйста, ошибки!',
+                        'successMessage' => '{$form.success_msg}',
+
+                        'btnText' => '{$form.btn_text}',
+                        'formName' => '{$form.name}',
+                        'ymGoal' => '{$form.ym_goal}',
+                        'ymId' => '{$ym_id}'
+
+                        'phone.vTextRequired' => 'Укажите телефон.',
+                        'name.vTextRequired' => 'Укажите имя.',
+                        'phone.vTextMinLength' => 'Слишком короткий телефон.',
+                        'name.vTextMinLength' => 'Слишком короткое имя.',
+                        'organization.vTextRequired' => 'Напишите название организации.',
+                        'organization.vTextMinLength' => 'Слишком короткое название.',
+                        'email.vTextRequired' => 'Укажите электронную почту.',
+                        'email.vTextEmail' => 'Это не электронная почта.',
+                        'message.vTextRequired' => 'Напишите хоть пару строк.',
+                        'message.vTextMinLength' => 'Суть не раскрыта.',
+                        'secret.vTextContains' => 'Кажется Вы робот. Если это не так, обновите страницу.'
+                    ]}
+                    {/if}
+                {/foreach}
+                {/if}
+            </div>
+        </div>
+    </div>
+</section>

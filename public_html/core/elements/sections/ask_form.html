@@ -1,1 +1,48 @@
-        <section class="jsSection py-25">            <div class="container">                <form class="d-grid ask-form-grid">                    <div class="title-area interactive-block p-lg-30 p-15">                        <div class="title-decor">                            <h3 class="text-uppercase fs-36 lh-150 font-hagincapsmedium">                                Не нашли ответ на свой? Задайте его нам и мы ответим                            </h3>                        </div>                    </div>                    <div class="form-group field-area-1">                        <input type="text" name="name" class="input-field">                        <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Ваше имя</span></label>                        <small class="fs-16 font-cuprumbolditalic input-error error_name text-red"></small>                    </div>                    <div class="form-group field-area-2">                        <input type="text" name="organization" class="input-field">                        <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Название организации</span></label>                        <small class="fs-16 font-cuprumbolditalic input-error error_organization text-red"></small>                    </div>                    <div class="form-group field-area-3">                        <input type="tel" name="phone" class="input-field">                        <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Ваш номер телефона</span></label>                        <small class="fs-16 font-cuprumbolditalic input-error error_phone text-red"></small>                    </div>                    <div class="form-group field-area-4">                        <input type="text" name="email" class="input-field">                        <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Ваша электронная почта</span></label>                        <small class="fs-16 font-cuprumbolditalic input-error error_email text-red"></small>                    </div>                    <div class="form-group field-area-5">                        <input type="text" name="message" class="input-field">                        <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Текст вопроса</span></label>                        <small class="fs-16 font-cuprumbolditalic input-error error_message text-red"></small>                    </div>                    <div class="form-group btn-area">                        <button class="btn btn-dark fs-22 w-100 h-100">Отправить запрос</button>                    </div>                </form>            </div>        </section>        
+{set $ym_id = $_modx->config.ym_id}
+{set $secret = $_modx->config.secret}
+{set $email_from = 'noreply@'~$_modx->config.http_host}
+{set $validateDefault = 'secret:contains=^'~$secret~'^'}
+{set $static_blocks_page_id = $_modx->config.static_blocks_page_id}
+{set $form_list = $static_blocks_page_id | resource: 'form_list' | fromJSON}
+{if $form_list}
+    {foreach $form_list as $form}
+        {if $form.fid == 'askForm'}
+        <section class="jsSection py-25">
+            <div class="container">
+                ##'!AjaxForm' | snippet : [
+                    'form' =>  '@FILE chunks/forms/{$form.fid}.html',
+                    'snippet' => 'FormIt',
+                    'hooks' => 'FormItSaveForm,email',
+                    'emailSubject' => '{$form.name}',
+                    'emailTo' => '{$form.emails}',
+                    'emailFrom' => '{$email_from}',
+                    'emailTpl' => '@FILE chunks/emails/tplFormEmail.html',
+                    'validate' => '{$form.validate~$validateDefault}',
+                    'validationErrorMessage' => 'Исправьте, пожалуйста, ошибки!',
+                    'successMessage' => '{$form.success_msg}',
+
+                    'btnText' => '{$form.btn_text}',
+                    'formName' => '{$form.name}',
+                    'ymGoal' => '{$form.ym_goal}',
+                    'ymId' => '{$ym_id}',
+                    'title' => '{$title}',
+                    'subtitle' => '{$subtitle}',
+                    'title_position' => '{$title_position}',
+
+                    'phone.vTextRequired' => 'Укажите телефон.',
+                    'name.vTextRequired' => 'Укажите имя.',
+                    'phone.vTextMinLength' => 'Слишком короткий телефон.',
+                    'name.vTextMinLength' => 'Слишком короткое имя.',
+                    'organization.vTextRequired' => 'Напишите название организации.',
+                    'organization.vTextMinLength' => 'Слишком короткое название.',
+                    'email.vTextRequired' => 'Укажите электронную почту.',
+                    'email.vTextEmail' => 'Это не электронная почта.',
+                    'message.vTextRequired' => 'Напишите хоть пару строк.',
+                    'message.vTextMinLength' => 'Суть не раскрыта.',
+                    'secret.vTextContains' => 'Кажется Вы робот. Если это не так, обновите страницу.'
+                ]}
+            </div>
+        </section>
+        {/if}
+    {/foreach}
+{/if}

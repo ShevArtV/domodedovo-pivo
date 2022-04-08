@@ -1,0 +1,15 @@
+{set $imgWebp = $img | pThumb:'f=webp'}
+{if !$img_mob}
+{set $img_mob = $img}
+{/if}
+{set $imgMobWebp = $img_mob | pThumb:'f=webp'}
+<div class="swiper-slide">
+    <div class="slide-content h-100">
+        <picture>
+            <source srcset="{$imgWebp}" media="(min-width: 768px)" type="image/webp">
+            <source srcset="{$imgMobWebp}" type="image/webp">
+            <source srcset="{$img}" media="(min-width: 768px)">
+            <img data-msrc="{$imgMob}" width="1399" height="648" class="img-inner" alt="{$alt}"/>
+        </picture>
+    </div>
+</div>

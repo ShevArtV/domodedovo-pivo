@@ -3,21 +3,33 @@
 <head>
     <!-- общие поля сайта -->
     {set $site_url = $_modx->config.site_url}
+    {set $site_name = $_modx->config.site_name}
 
     <!-- основные поля ресурса -->
-    {set $id = $_modx->resource.id}
+    {set $rid = $_modx->resource.id}
     {set $pagetitle = $_modx->resource.pagetitle}
-    {set $longtitle = $_modx->resource.longtitle}
     {set $longtitle = $_modx->resource.longtitle}
     {set $menutitle = $_modx->resource.menutitle}
     {set $description = $_modx->resource.description}
     {set $introtext = $_modx->resource.introtext}
     {set $content = $_modx->resource.content}
 
-    <!--поля конфигурации пользователя -->
-    {set $email = $_modx->config.email}
-    {set $phone = $_modx->config.phone}
-    {set $phoneFormatted = $_modx->config.phone|strip:true|ereplace:'/(\d)(\d{3})(\d{3})(\d{2})(\d{2})$/':'8 (\2) \3-\4-\5'}
+    <!-- символика -->
+    {set $logo = $_modx->config.logo}
+    {set $logo_min = $_modx->config.logo_min}
+    {set $favicon = $_modx->config.favicon}
+    {set $favicon_apple = $_modx->config.favicon_apple}
+
+    <!--контакты -->
+    {set $contacts = 'contacts' | get_contacts: 9}
+
+    <!-- метрики -->
+    {set $ym = $_modx->config.ym | replace: '{' : '{ '}
+    {set $ym_id = $_modx->config.ym_id}
+    {set $secret = $_modx->config.secret}
+    {set $ga = $_modx->config.ga | replace: '{' : '{ '}
+    {set $fp = $_modx->config.fp | replace: '{' : '{ '}
+    {set $vkp = $_modx->config.vkp | replace: '{' : '{ '}
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -26,7 +38,16 @@
     <base href="{$site_url}">
     <title>{$pagetitle}</title>
 
+    <!-- favicons -->
+    {if $favicon}
+    <link rel="icon" href="{$favicon}">
+    {/if}
+    {if $favicon_apple}
+    <link rel="apple-touch-icon" sizes="180x180" href="{$favicon_apple}">
+    {/if}
+
     <!-- preload scripts -->
+    <link rel="preload" href="assets/project_files/js/jquery.min.js" as="script">
     <link rel="preload" href="assets/project_files/js/functions.min.js" as="script">
     <link rel="preload" href="assets/project_files/js/main.min.js" as="script">
 
@@ -36,130 +57,139 @@
     <!-- styles -->
     <link rel="stylesheet" href="assets/project_files/css/main.min.css">
 
+    {$ym?:''}
+    {$ga?:''}
+    {$fp?:''}
+    {$vkp?:''}
 </head>
+{set $headerNav = 'pdoResources' | snippet:[
+    'parents' => 0,
+    'tpl' => '@FILE chunks/nav/nav-item.html',
+    'limit' => 0,
+    'depth' => 0,
+    'includeTVs' => 'show_in_header',
+    'sortby' => ['menuindex' => 'ASC'],
+    'showHidden' => 0,
+    'tvPrefix' => ''
+]}
+{set $footerNav = 'pdoResources' | snippet:[
+    'parents' => 0,
+    'tpl' => '@FILE chunks/nav/nav-item.html',
+    'limit' => 0,
+    'includeTVs' => 'show_in_footer',
+    'where' => ['show_in_footer' => 1],
+    'showHidden' => 0,
+    'depth' => 0,
+    'sortby' => ['menuindex' => 'ASC'],
+    'tvPrefix' => ''
+]}
 <body>
 <div class="jsSiteWrap">
     <header class="main-header jsHeader">
         <div class="container">
             <div class="d-grid header-grid">
-                <a href="/" class="link-area jsScrollHide interactive-block">
-                    <img src="assets/project_files/img/common/logo-min.svg" class="js-img-svg" width="104" height="90" alt="">
+                <a {$rid != 1 ?'href="/"' : ''} class="link-area jsScrollHide interactive-block">
+                    {if $rid != 14}
+                    <img src="{$logo_min}" class="js-img-svg" width="104" height="90" alt="{$site_name}">
+                    {else}
+                    <img src="{14 | resource: 'img_mob'}" class="js-img-svg" width="206" height="90" alt="{$site_name}">
+                    {/if}
                 </a>
                 <div class="logo-area jsScrollHide interactive-block">
-                    <img src="assets/project_files/img/common/logo.svg" class="js-img-svg" width="320" height="120" alt="">
-                    <button type="button" class="jsToggler btn btn-dark d-sm-none d-block" data-target="menu">Меню</button>
+                    {if $rid != 14}
+                    <img src="{$logo}" class="js-img-svg" width="320" height="120" alt="{$site_name}">
+                    {else}
+                    <img src="{14 | resource: 'img'}" class="js-img-svg" width="600" height="120" alt="{$site_name}">
+                    {/if}
+                    <button type="button" class="jsToggler btn btn-dark d-sm-none d-block" data-target="menu">{1 | resource: 'link_attributes'}</button>
                 </div>
                 <div class="date-area d-flex flex-column jsScrollHide interactive-block">
-                    <button type="button" class="jsToggler btn btn-dark d-sm-block d-lg-none d-none mb-20" data-target="menu">Меню</button>
+                    <button type="button" class="jsToggler btn btn-dark d-sm-block d-lg-none d-none mb-20" data-target="menu">{1 | resource: 'link_attributes'}</button>
                     <p class="">
-                        Суббота, <br>
-                        26 марта 2022
+                        {'' | dateRU: '%l,<br> %d %m %Y'}
                     </p>
                 </div>
                 <ul class="list-unstyled menu-area interactive-block" id="menu">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">Главная</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">О нас</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Каталог продукции</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Фирменный бар</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Вопрос и ответ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Сотрудничество</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Новости</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Контакты</a>
-                    </li>
+                    {$headerNav}
                 </ul>
             </div>
         </div>
     </header>
     <main>
+        {if $rid != 1}
+        <section class="jsSection5">
+            <div class="container">
+                <div class="inner-title interactive-block p-lg-30 p-15 mt-sm-0 mt-20">
+                    <div class="{$introtext ? 'mb-30' :''} text-center">
+                        <h1 class="lh-150 fs-62 font-heroldbold">{$pagetitle}</h1>
+                    </div>
+                    <div>
+                        <p>
+                           {$introtext}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {/if}
+
         {block 'content'}
         <section class="jsSection"></section>
         {/block}
     </main>
-    <footer class="main-footer jsFooter">
+
+    {set $footer_header = 1 | resource: 'footer_header'}
+    {set $footer_btn_text = 1 | resource: 'footer_btn_text'}
+    {set $footer_link_text = 1 | resource: 'footer_link_text'}
+    {set $footer_link = 1 | resource: 'footer_link'}
+    <footer class="main-footer jsFooter pt-25">
         <div class="container">
             <div class="footer-grid">
                 <ul class="list-unstyled menu-area interactive-block">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">Главная</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">О нас</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Каталог продукции</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Фирменный бар</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Вопрос и ответ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Сотрудничество</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Новости</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Контакты</a>
-                    </li>
+                    {$footerNav}
                 </ul>
                 <a href="/" class="link-area interactive-block">
                     <img src="assets/project_files/img/common/logo-min-w.svg" class="js-img-svg" width="104" height="90" alt="">
                 </a>
                 <div class="logo-area interactive-block">
                     <img src="assets/project_files/img/common/logo-w.svg" class="js-img-svg" width="320" height="120" alt="">
-                    <button type="button" class="jsToggler btn btn-dark d-sm-none d-block" data-target="menu">Меню</button>
                 </div>
                 <div class="date-area p-lg-30 p-15 d-flex flex-column interactive-block">
                     <div class="mb-30">
-                        <p class="fs-22 lh-100 font-hagincapsmedium">Остались вопросы?</p>
+                        <p class="fs-22 lh-100 font-hagincapsmedium">{$footer_header?:'Остались вопросы?'}</p>
                     </div>
                     <div>
-                        <a data-src="contact-form" data-fancybox class="btn btn-white fs-20 px-lg-15 px-10 lh-100">Задать нам вопрос</a>
+                        <a data-src="#contact-form" data-fancybox="" class="btn btn-white fs-20 px-lg-15 px-10 lh-100">{$footer_btn_text?:'Задать нам вопрос'}</a>
                     </div>
                 </div>
                 <div class="politic-area p-lg-30 p-15 interactive-block d-flex align-items-center">
-                    <a href="#" class="fs-14 lh-120">Политика конфиденциальности и обработки персональных данных</a>
+                    <a href="{6 | url}" target="_blank" class="fs-14 lh-120">{6 | resource: 'pagetitle'}</a>
                 </div>
-                <div class="copyright-area p-lg-30 p-15 text-center interactive-block">
-                    <div class="mb-30">
-                        <p class="fs-14 lh-150">2018-2022 г. © “Домодедовская пивоварня” Все права защищены.</p>
-                    </div>
+                <div class="copyright-area p-lg-30 p-15 text-center interactive-block d-flex flex-column justify-content-center">
                     <div>
-                        <a href="#" class="fs-14 lh-120 text-dark">Cводные данные о
-                            результатах проведения СОУТ и перечень мероприятий по улучшению условий и охраны труда работников</a>
+                        <p class="fs-14 lh-150">2018-{'' | date: 'Y'}&nbsp;г. © “{$site_name}” Все права защищены.</p>
                     </div>
+                    {if $footer_link}
+                    <div class="mt-30">
+                        <a href="{$footer_link}" target="_blank" class="fs-14 lh-120 text-dark">{$footer_link_text}</a>
+                    </div>
+                    {/if}
                 </div>
                 <div class="develop-area p-lg-30 p-15 interactive-block flex-wrap d-flex align-items-center justify-content-center">
                     <div class="col-12 text-center mb-md-0 mb-10">
                         <p class="fs-14 lh-150">Разработано</p>
                     </div>
                     <div class="col-12 d-flex flex-wrap align-items-center justify-content-center">
-                        <a href="#" class="text-decoration-none px-10 d-block dark-on-hover mb-md-0 mb-10"><i class="icon-canary-pro fs-30"></i></a>
-                        <a href="#" class="text-decoration-none px-10 d-block orange-on-hover mb-md-0 mb-10"><i class="icon-art-sites fs-30"></i></a>
+                        <a href="https://canary-pro.ru" target="_blank" class="text-decoration-none px-10 d-block sand-on-hover mb-md-0 mb-10"><i class="icon-canary-pro fs-30"></i></a>
+                        <a href="https://art-sites.ru" target="_blank" class="text-decoration-none px-10 d-block orange-on-hover mb-md-0 mb-10"><i class="icon-art-sites fs-30"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 </div>
-<!-- MODALS -->
+
+<!-- Modals -->
 <div id="shop-points" class="modal">
     <div class="interactive-block p-lg-30 p-15 border-all border-bottom-none">
         <div>
@@ -270,12 +300,11 @@
         </div>
     </form>
 </div>
-<!-- /MODALS -->
+<!-- /Modals -->
 
 <!-- scripts -->
-{if $_modx->user.id == 1}
 <script src="assets/project_files/js/jquery.min.js"></script>
-{/if}
+<script src="assets/components/pdotools/js/pdopage.min.js"></script>
 <script src="assets/project_files/js/functions.min.js" type="module"></script>
 <script src="assets/project_files/js/main.min.js" type="module"></script>
 </body>

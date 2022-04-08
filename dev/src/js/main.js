@@ -12,6 +12,11 @@ document.addEventListener('readystatechange', function () {
             wrap: document.querySelector('.jsSiteWrap'),
             menu: document.querySelector('#menu'),
             lazyLoadAttr: 'data-msrc',
+            mapBlocks: document.querySelectorAll('.ymBlock'),
+            swiperJSSrc: 'assets/project_files/js/swiper-bundle.min.js',
+            fancyboxCSSSrc: 'assets/project_files/css/fancybox.css',
+            fancyboxJSSrc: 'assets/project_files/js/fancybox.umd.min.js',
+            ymapJSSrc: 'https://api-maps.yandex.ru/2.1?apikey=c1084e19-c337-4b9d-bc80-a17aae073595&load=package.full&lang=ru_RU',
             scrollHideElems: document.querySelectorAll('.jsScrollHide'),
             sections: document.querySelectorAll('.jsSection'),
             navLinks: document.querySelectorAll('.nav-link'),
@@ -56,6 +61,39 @@ document.addEventListener('readystatechange', function () {
         };
 
         function documentReady() {
+            /* обрабатываем отправку формы */
+            document.addEventListener('af_complete', function (e) {
+                const status = e.detail.status, // статус ответа
+                        response = e.detail.response, // сам ответ
+                        form = e.detail.form, // элемент формы
+                        xhr = e.detail.xhr; // объект запроса
+
+                if(!status){
+                    console.log(response);
+                    for(let k in response.data){
+                        let field = form.querySelector('[name="'+k+'"]');
+                        field.value = '';
+                        field.nextElementSibling.classList.remove('full');
+                        setTimeout(function(){ field.blur(); },200);
+                    }
+                }else{
+                    form.querySelectorAll('.input-label').forEach(el => el.classList.remove('full'));
+                }
+
+            });
+            /* обрабатываем отправку формы */
+
+
+
+            /* подключаем скрипты карты */
+            if(projectScripts.mapBlocks){
+                functions.loadScript(projectScripts.ymapJSSrc, () =>{
+                    functions.initMap(projectScripts.mapBlocks);
+                });
+            }
+            /* подключаем скрипты карты */
+
+
             /* разворачиваем svg */
             if(projectScripts.svgImg.length){
                 projectScripts.svgImg.forEach(elem => {
@@ -87,14 +125,12 @@ document.addEventListener('readystatechange', function () {
             /* модалки и галерея */
             if (projectScripts.fancybox.length) {
 
-                functions.loadScript('assets/project_files/js/fancybox.umd.min.js', () => {
+                functions.loadScript(projectScripts.fancyboxJSSrc, () => {
                     let link = document.createElement('link');
                     link.setAttribute('rel', 'stylesheet');
-                    link.setAttribute('href', 'assets/project_files/css/fancybox.css');
+                    link.setAttribute('href', projectScripts.fancyboxCSSSrc);
                     document.head.appendChild(link);
-                    projectScripts.fancybox.forEach(el => {
 
-                    });
                     Fancybox.bind("[data-fancybox]", {
                         on: {
                             reveal:(fancybox, slide) =>{
@@ -263,7 +299,7 @@ document.addEventListener('readystatechange', function () {
                         },
                     },
                 };
-                functions.loadScript('assets/project_files/js/swiper-bundle.min.js', () => functions.initSliders(projectScripts.sliders, sliderParams));
+                functions.loadScript(projectScripts.swiperJSSrc, () => functions.initSliders(projectScripts.sliders, sliderParams));
             }
             /* инициализируем слайдеры */
 

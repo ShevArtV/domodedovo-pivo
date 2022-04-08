@@ -54,6 +54,11 @@
       font-size: $fs-16;
     }
   }
+  .header-grid{
+    .nav-item.in_footer{
+      display: none;
+    }
+  }
 }
 @media (min-width: $xl){
   .nav-item{

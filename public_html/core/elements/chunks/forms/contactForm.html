@@ -1,0 +1,31 @@
+<form class="form-area d-flex flex-column">
+    {include 'file:chunks/common/common_fields.html'}
+    <div class="form-group border-bottom flex-grow">
+        <input type="text" name="name" class="input-field">
+        <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Ваше имя</span></label>
+        <small class="fs-16 font-cuprumbolditalic input-error error_name text-red"></small>
+    </div>
+    <div class="form-group border-bottom flex-grow">
+        <input type="text" name="organization" class="input-field">
+        <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Название организации</span></label>
+        <small class="fs-16 font-cuprumbolditalic input-error error_organization text-red"></small>
+    </div>
+    <div class="form-group border-bottom flex-grow">
+        <input type="tel" name="phone" class="input-field">
+        <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Ваш номер телефона</span></label>
+        <small class="fs-16 font-cuprumbolditalic input-error error_phone text-red"> </small>
+    </div>
+    <div class="form-group border-bottom flex-grow">
+        <input type="text" name="email" class="input-field">
+        <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Ваша электронная почта</span></label>
+        <small class="fs-16 font-cuprumbolditalic input-error error_email text-red"></small>
+    </div>
+    <div class="form-group border-bottom flex-grow">
+        <input type="text" name="message" class="input-field">
+        <label class="input-label"><i class="icon-dot-section"></i><span class="ps-10">Ваш комментарий</span></label>
+        <small class="fs-16 font-cuprumbolditalic input-error error_message text-red"></small>
+    </div>
+    <div class="form-group flex-grow">
+        <button class="btn btn-dark fs-22 w-100 h-100">{$btn_text?:'Отправить запрос'}</button>
+    </div>
+</form>

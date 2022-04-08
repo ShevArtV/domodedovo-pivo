@@ -11,7 +11,7 @@ var gulp          = require('gulp'),
 
 var assetsDir = 'src',
     coreDir = '../public_html/core/',
-    pagesSrc = coreDir+'**/*.html',
+    pagesSrc = coreDir+'elements/**/*.html',
     domain = 'http://domodedovo-pivo',
     productionDir = '../public_html/assets/project_files';
 
@@ -53,7 +53,7 @@ gulp.task('sass', function () {
 
 gulp.task('cssBuild', function () {
     return gulp.src([productionDir + '/css/**/*.css','!' + productionDir + '/css/**/*.min.css'])
-        .pipe(uncss({html: [pagesSrc], ignore: ['.header-grid .menu-area.active', '.active']}))
+        .pipe(uncss({html: [pagesSrc]}))
         .pipe(cssmin())
         .pipe(rename(function(path){
             path.extname = '.min.css';
@@ -68,7 +68,7 @@ gulp.task('watch', function() {
     browserSync.init({
         proxy: domain,
         port: 8080,
-        open: true,
+        open: false,
         notify: false
     });
     gulp.watch(assetsDir + '/js/**/*.js', gulp.series('jsBuild')).on('change', browserSync.reload);

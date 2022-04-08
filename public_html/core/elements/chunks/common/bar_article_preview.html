@@ -1,0 +1,13 @@
+<a href="{$id | url}" class="product-preview d-flex flex-column p-lg-30 p-15 text-decoration-none interactive-block">
+    <div class="title mb-20 hover-color-gold">
+        <h4 class="fs-32 font-hagridheavy lh-150">
+            {$pagetitle}
+        </h4>
+    </div>
+    <div class="flex-grow">
+        <picture>
+            <source srcset="{$img | pThumb: 'f=webp'}" type="image/webp">
+            <img data-msrc="{$img}" class="flex-img gray-img" alt="{$pagetitle}"/>
+        </picture>
+    </div>
+</a>

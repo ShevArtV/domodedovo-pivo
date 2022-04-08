@@ -1,1 +1,65 @@
-        <section class="jsSection py-25">            <div class="container">                <div class="d-grid bar-grid">                    <div class="title-area interactive-block p-lg-30 p-15">                        <div>                            <h2 class="text-center lh-150 fs-54 font-hagridheavy text-lowercase">                                наш первый бар                            </h2>                        </div>                        <div class="title-decor text-center">                            <h3 class="text-uppercase fs-36 lh-150 font-hagincapsmedium">                                бар №1, потому что открыли его первым                            </h3>                        </div>                    </div>                    <div class="desc-area p-lg-30 p-15">                        <div class="mb-20">                            <h4 class="fs-32 lh-100 font-hagridheavy text-lowercase">                                г. домодедово, ул. кирова д.1а                            </h4>                        </div>                        <div class="mb-35">                            <p class="fs-18 font-anonymousproregular lh-150">                                Повседневная практика показывает, что понимание сути ресурсосберегающих технологий предполагает независимые способы реализации инновационных                                методов управления процессами.                            </p>                        </div>                        <ul class="list-unstyled">                            <li class="mb-20">                                <span class="fs-32 lh-100 font-hagridheavy text-lowercase">112 м. кв</span>                            </li>                            <li class="mb-20">                                <span class="fs-32 lh-100 font-hagridheavy text-lowercase">30 кранов</span>                            </li>                            <li class="mb-20">                                <span class="fs-32 lh-100 font-hagridheavy text-lowercase">банки и бутылки</span>                            </li>                            <li class="mb-20">                                <span class="fs-32 lh-100 font-hagridheavy text-lowercase">собственная кухня</span>                            </li>                        </ul>                    </div>                    <div class="map-area">                        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A8f95bda282c6e8ee6cc66e14197040f228fe4bb3c245ea87c55f369bef30e3e4&amp;source=constructor"                                width="100%" height="100%"></iframe>                    </div>                    <div class="btn-area-1 text-center">                        <a data-fancybox="menu-1-1" href="assets/project_files/docs/menu.pdf"                           class="text-decoration-none btn bg-gold-gradient-2 font-hagridheavy w-100 h-100 fs-54 lh-150">меню пиво</a>                    </div>                    <div class="btn-area-2 text-center">                        <a data-fancybox="menu-1-2" href="assets/project_files/docs/menu.pdf"                           class="text-decoration-none btn bg-gold-gradient-2 font-hagridheavy w-100 h-100 fs-54 lh-150">меню еда</a>                    </div>                </div>            </div>        </section>        
+{set $beer_menu = $parent | resource: 'beer_menu'}
+{set $eat_menu = $parent | resource: 'eat_menu'}
+<section class="jsSection py-25">
+    <div class="container">
+        <div class="d-grid bar-grid {!$eat_menu ?'bar-grid__noeat':''}">
+            <div class="title-area interactive-block p-lg-30 p-15">
+                <div>
+                    <h2 class="text-{$title_position} lh-150 fs-54 font-hagridheavy text-lowercase">
+                        {$parent | resource: 'pagetitle'}
+                    </h2>
+                </div>
+                <div class="title-decor text-center">
+                    <h3 class="text-uppercase fs-36 lh-150 font-hagincapsmedium">
+                        {$parent | resource: 'longtitle'}
+                    </h3>
+                </div>
+            </div>
+            <div class="desc-area p-lg-30 p-15">
+                <div class="mb-20">
+                    <h4 class="fs-32 lh-100 font-hagridheavy text-lowercase">
+                        {$parent | resource: 'address'}
+                    </h4>
+                </div>
+                <div class="mb-35">
+                    <p class="fs-18 font-anonymousproregular lh-150">
+                        {$parent | resource: 'introtext'}
+                    </p>
+                </div>
+                <ul class="list-unstyled">
+                    {set $list = $parent | resource: 'list_simple' | fromJSON}
+                    {foreach $list as $item}
+                    <li class="mb-20">
+                        <span class="fs-32 lh-100 font-hagridheavy text-lowercase">{$item.content}</span>
+                    </li>
+                    {/foreach}
+                </ul>
+            </div>
+            <div class="map-area">
+                {set $coords = ($parent | resource: 'coords') | replace: '[':'' | replace: ']':''}
+                <div id="{$id}" class="ymBlock" style="width:100%;height:100%"
+                     data-params='{
+                "idMap":"{$id}",
+                "iconContent":"{$parent | resource: 'pagetitle' | ucfirst}",
+                "hintContent":"{$parent | resource: 'address'}",
+                "centerCoords": "{$coords}",
+                "zoom":"18",
+                "iconPath":"assets/project_files/img/icons/plane-on-shield.svg"
+                }'></div>
+            </div>
+
+            <div class="btn-area-1 text-center">
+                <a data-fancybox="menu-1-1" href="{$beer_menu}"
+                   class="text-decoration-none btn bg-gold-gradient-2 font-hagridheavy w-100 h-100 fs-54 lh-150">меню пиво</a>
+            </div>
+
+
+            {if $eat_menu}
+            <div class="btn-area-2 text-center">
+                <a data-fancybox="menu-1-2" href="{$eat_menu}"
+                   class="text-decoration-none btn bg-gold-gradient-2 font-hagridheavy w-100 h-100 fs-54 lh-150">меню еда</a>
+            </div>
+            {/if}
+        </div>
+    </div>
+</section>

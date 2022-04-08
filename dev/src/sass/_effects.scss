@@ -6,7 +6,7 @@
 .title-decor:after,
 .gray-img,
 .hover-color-gold,
-.dark-on-hover,
+.sand-on-hover,
 .orange-on-hover,
 .hover-color-sand{
   transition: all $fast;
@@ -139,8 +139,8 @@
     }
   }
 }
-.dark-on-hover:hover{
-  color: $dark !important;
+.sand-on-hover:hover{
+  color: $sand !important;
 }
 .orange-on-hover:hover{
   color:#fdc404 !important;

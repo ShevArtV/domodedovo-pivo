@@ -24,7 +24,13 @@
     border-top: 1px solid $border-color;
   }
 }
-
+#pdopage{
+  .content-area{
+    .product-preview{
+      margin-bottom: -1px;
+    }
+  }
+}
 @media (min-width:$sm){
   .tcf-grid{
     .content-area{

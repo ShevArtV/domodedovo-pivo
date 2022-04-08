@@ -1,0 +1,46 @@
+{if $template == 10}
+<a href="{$id | url}" class="product-preview bg-sand-on-hover d-flex flex-wrap p-lg-30 p-15 text-decoration-none">
+    <div class="col-12 title title-decor title-decor__under mb-30">
+        <h4 class="fs-48 font-hagincapsmedium lh-100">{$pagetitle}</h4>
+    </div>
+    <div class="col-12 subtitle">
+        <p>{$introtext}</p>
+    </div>
+    <div class="col-3 specifications">
+        {'msProductOptions' | snippet:[
+            'product' => $id,
+            'onlyOptions' => 'alcohol,density,bitter',
+            'tpl' => '@FILE chunks/common/optionPreview.html'
+        ]}
+    </div>
+    <div class="col-6 image">
+        <picture>
+            <source srcset="{$image | pThumb: 'f=webp'}" type="image/webp">
+            <img data-msrc="{$image}" width="144" height="509" alt="{$pagetitle}"/>
+        </picture>
+    </div>
+    <div class="col-3 specifications text-right">
+        {'msProductOptions' | snippet:[
+        'product' => $id,
+        'onlyOptions' => 'keg50,keg30,bottle,can',
+        'tpl' => '@FILE chunks/common/optionPreview.html'
+        ]}
+    </div>
+    <div class="col-12 link lh-100">
+        <span class="font-cuprumbolditalic fs-22">Перейти на страницу сорта</span>
+        <i class="icon-arrow-right"></i>
+    </div>
+</a>
+{/if}
+{if $template == 11}
+<div class="product-preview text-preview d-flex flex-column align-items-center justify-content-center {$bg_color} interactive-block p-lg-30 p-15">
+    <div class="col-12 title {$introtext?'':'mb-30'} text-{$title_position}">
+        <h4 class="fs-48 font-hagincapsmedium lh-100">{$pagetitle}</h4>
+    </div>
+    {if $introtext}
+    <div class="col-12 lh-150 text-justify">
+        <p>{$intotext}</p>
+    </div>
+    {/if}
+</div>
+{/if}

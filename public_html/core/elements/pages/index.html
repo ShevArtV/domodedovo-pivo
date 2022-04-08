@@ -1,4 +1,7 @@
 {extends 'file:pages/wrapper.html'}
 {block 'content'}
-
+{if (('core/elements/parsed/configs/'~$rid~'.html') | exists) === true}
+    {set $path = 'file:parsed/configs/'~$rid~'.html'}
+    {include $path}
+{/if}
 {/block}

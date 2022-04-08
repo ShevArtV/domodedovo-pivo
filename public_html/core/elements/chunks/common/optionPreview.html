@@ -1,0 +1,10 @@
+{foreach $options as $option}
+<div class="mb-25">
+    <i class="{$option.description}"></i>
+    {if $option.type == 'checkbox'}
+    <p>{$option.caption}&nbsp;{$option.measure_unit}</p>
+    {else}
+    <p>{$option.caption} {$option.value[0]}{$option.measure_unit}</p>
+    {/if}
+</div>
+{/foreach}

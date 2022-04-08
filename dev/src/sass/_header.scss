@@ -23,6 +23,10 @@
     padding-top: $px-10*2;
     padding-bottom: $px-10*2;
   }
+  .link-area{
+    padding-left: $px-10*2;
+    padding-right: $px-10*2;
+  }
   .logo-area {
     grid-area: I;
     display: flex;
@@ -30,7 +34,7 @@
     align-items: center;
     padding-top: $px-10*2;
     padding-bottom: $px-10*2;
-    img{
+    img, svg{
       display: none;
     }
   }
@@ -57,8 +61,9 @@
     opacity: 1;
     transform: translateY(0);
   }
+
   .link-area, .logo-area{
-    img {
+    img, svg {
       max-width: 100%;
     }
   }
@@ -72,7 +77,7 @@
     .logo-area{
       padding-left: $px-10*4.5;
       padding-right: $px-10*4.5;
-      img{
+      img,svg{
         display: block;
       }
     }
@@ -108,7 +113,7 @@
     }
 
     .link-area, .date-area {
-      padding: $vw-10*3 $vw-10*6;
+      padding: $vw-10*3 $vw-10*3;
     }
   }
 }
@@ -126,7 +131,7 @@
 @media (min-width: $xxxl) {
   .header-grid, .footer-grid {
     .link-area, .date-area {
-      padding: $vw-10*3.5 $vw-10*8;
+      padding: $vw-10*3.5 0;
     }
   }
 }
@@ -134,7 +139,7 @@
 @media (min-width: $wide) {
   .header-grid, .footer-grid {
     .link-area, .date-area {
-      padding: $px-10*4 $px-10*9;
+      padding: $px-10*4 0;
     }
   }
 }
